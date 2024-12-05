@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ocupa al menos el 100% del alto de la pantalla */
+    display: flex;
+    flex-direction: column; /* Permite organizar header, main y footer en una columna */
+}
+
+.main-container {
+    flex: 1; /* Hace que el main ocupe todo el espacio restante */
+    display: flex;  /* Flexbox para centrar contenido */
+    flex-direction: column;  /* Alinear en columna */
+    justify-content: center;  /* Centrar verticalmente */
+    align-items: center;  /* Centrar horizontalmente */
+    background-color: rgb(245, 190, 207);  /* Fondo claro */
+}
+
+.main-content{
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+
+.header {
+    background-color: rgb(197, 115, 139); /* Rosa fuerte */
+    color: rgb(164, 0, 55);
+    text-align: center;
+    padding: 1em 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 150px; /* Puedes ajustar la altura según lo desees */
+}
+
+.header-content {
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 2rem; /* Tamaño del título */
+}
+
+.header-content p {
+    font-size: 1.2rem; /* Tamaño de la descripción */
+}
+
+.logo-container {
+    position: absolute; /* Lo coloca en la esquina */
+    top: -25px; /* Ajusta la distancia desde el top */
+    left: 20px; /* Ajusta la distancia desde la izquierda */
+}
+    
+.logo {
+    width: 200px; /* Ajusta el tamaño del logo */
+    height: auto;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 7px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0; /* Evita que el footer se encoja */
+    text-align: center; /* Centra el texto del footer horizontalmente */
+}
+
+.footer p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Estilo del formulario */
+form {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 600px; /* Ancho fijo */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre campos */
+}
+
+/* Estilo de los campos del formulario */
+form input,
+form textarea,
+form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #c71585; /* Color en foco */
+}
+
+/* Botón de guardar */
+form button[type="submit"] {
+    background-color: #c71585; /* Color principal */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #a01068; /* Color más oscuro al pasar el mouse */
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+/* Pop-up */
+.pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none; /* Oculto por defecto */
+    z-index: 1000;
+    text-align: center;
+    animation: fade-in 0.5s ease-in-out;
+}
+
+.pop-up.success {
+    border: 2px solid #ff35c6; /* Verde para éxito */
+}
+
+.pop-up.error {
+    border: 2px solid #dc3545; /* Rojo para error */
+}
+
+.pop-up button {
+    background-color: #c71585;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Contenedor de la pestaña */
+.uploadProgressContainer {
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    width: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color: #f8f9fa; /* Fondo claro */
+    border: 1px solid #dee2e6; /* Borde gris */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+    display: none; /* Oculto por defecto */
+}
+
+/* Encabezado de la pestaña */
+.uploadProgressContainer:before {
+    content: "Subiendo archivos...";
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+/* Contenedor de cada archivo */
+.progress-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Información del archivo (nombre) */
+.file-info {
+    flex: 1;
+    font-size: 12px;
+    color: #343a40;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+/* Barra de progreso */
+.progress-bar {
+    flex: 2;
+    background-color: #e9ecef;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar span {
+    display: block;
+    height: 100%;
+    background-color: #17a2b8; /* Azul claro */
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Iconos de estado */
+.success-icon {
+    color: #28a745; /* Verde */
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.error-icon {
+    color: #dc3545; /* Rojo */
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .header-content p {
+        font-size: 1rem;
+    }
+
+    .menu {
+        padding: 20px 0;
+    }
+
+    .menu li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .footer p {
+        font-size: 0.9rem;
+    }
+
+    .site-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .site-header .fecha {
+        font-size: 0.9rem;
+    }
+
+    .description h3,
+    .photos h3 {
+        font-size: 1.2rem;
+    }
+}

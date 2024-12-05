@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Detalles del Sitio{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/site_details_page.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/gallery.js' %}" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Detalles del sitio</h1>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="site-details">
+            <header class="site-header">
+                <h2>{{ site.name }}</h2>
+                <p class="date">
+                    <strong>Fecha:</strong> 
+                    {{ site.start_date|date:"d M Y" }} - {{ site.end_date|date:"d M Y" }}
+                </p>
+            </header>
+    
+            <section class="description">
+                <h3>Descripción</h3>
+                <p>{{ site.description }}</p>
+            </section>
+    
+            <section class="photos">
+                <h3>Fotos del Viaje</h3>
+                {% if site.photos.all %}
+                    <div class="photos-gallery">
+                        {% for photo in site.photos.all %}
+                            <div class="photo-card">
+                                <img src="/media/{{ photo.image }}" alt="Foto de {{ site.name }}" class="trip-photo" onclick="openModal('/media/{{ photo.image }}')">
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div id="photo-modal" class="photo-modal">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <span class="nav-arrow left-arrow" onclick="navigateModal(-1)">&#10094;</span> <!-- Flecha izquierda -->
+                        <span class="nav-arrow right-arrow" onclick="navigateModal(1)">&#10095;</span> <!-- Flecha derecha -->
+                        <img class="modal-content" id="modal-image">
+                    </div>
+    
+                    <div class="add-photo-container">
+                        <a href="{% url 'sites:add_photos' pk=site.pk %}" class="btn-add-photo">
+                            <button type="button">Añadir Foto</button>
+                        </a>
+                    </div>
+                {% else %}
+                    <p>No hay fotos disponibles.</p>
+                    <div class="add-photo-container">
+                        <a href="{% url 'sites:add_photos' pk=site.pk %}" class="btn-add-photo">
+                            <button type="button">Añadir Foto</button>
+                        </a>
+                    </div>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+    </footer>
+</body>
+</html>

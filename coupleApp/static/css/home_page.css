@@ -1,0 +1,37 @@
+.home-menu {
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    padding: 40px; /* Espaciado interno */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    display: flex; /* Colocar elementos en una fila */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    gap: 60px; /* Espaciado entre opciones */
+    max-width: 100%; /* Ancho máximo del contenedor */
+    margin: auto; /* Centrar el menú */
+    transform: translateY(-100px); /* Mueve el menú hacia arriba 20px */
+}
+
+.home-menu ul {
+    padding: 0; /* Quitar espaciado por defecto */
+    margin: 0; /* Quitar márgenes */
+    display: flex; /* Hacer que los elementos estén en fila */
+    gap: 50px; /* Espaciado entre elementos */
+    list-style: none; /* Eliminar puntos */
+}
+
+.home-menu-item {
+    text-decoration: none; /* Quitar subrayado */
+    font-size: 1.2rem; /* Tamaño del texto */
+    color: #C71585; /* Color del texto */
+    font-weight: bold; /* Negrita */
+    padding: 15px 12px; /* Espaciado interno */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Efectos al pasar el ratón */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.home-menu-item:hover {
+    background-color: #C71585; /* Fondo rosa al pasar el ratón */
+    color: white; /* Cambiar color del texto */
+}

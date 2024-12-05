@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Añadir sitio{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/addPhotos.js' %}" defer></script>
+</head>
+<body>
+  <header class="header">
+      <div class="logo-container">
+          <a href="{% url 'core:home_page' %}">
+            <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+          </a>
+      </div>
+      <div class="header-content">
+          <h1>Añadir un nuevo sitio</h1>
+      </div>
+  </header>
+
+  <div class="main-container">
+    <h2>Agregar Foto</h2>
+    <form method="post" enctype="multipart/form-data" id="dataForm">
+      {% csrf_token %}
+      <input type="file" name="images" id="images" multiple>
+      <button type="submit" id="uploadButton">Guardar Foto</button>
+    </form>
+
+    <div id="uploadProgressContainer" class="uploadProgressContainer"></div>
+  </div>
+
+  <div class="pop-up" id="popup">
+    <p id="popupMessage"></p>
+    <button onclick="closePopup()">Cerrar</button>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+  </footer>
+</body>
