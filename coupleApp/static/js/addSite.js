@@ -1,3 +1,13 @@
+fetch('/sites/get-google-maps-key/')
+  .then(response => response.json())
+  .then(data => {
+    const apiKey = data.apiKey;
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    document.body.appendChild(script);
+});
+
 async function handleSubmit(event) {
     event.preventDefault(); // Evita el envío por defecto del formulario
 

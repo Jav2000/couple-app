@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 from .models import Site, Photo
 from .forms import SiteForm
@@ -40,6 +41,8 @@ def sites_geojson(request):
     }
     return JsonResponse(geojson)
 
+def get_google_maps_key(request):
+    return JsonResponse({'apiKey': settings.GOOGLE_MAPS_API_KEY})
 
 def new_site(request):
     if request.method == 'POST':

@@ -14,6 +14,7 @@ urlpatterns = [
     path('<int:pk>/delete/', views.delete_site, name='delete_site'),
     path('<int:pk>/add-photos/', views.add_photos, name='add_photos'),
     path('delete-photo/<int:photo_id>/', views.delete_photo, name='delete_photo'),
+    path('get-google-maps-key/', views.get_google_maps_key, name='get_google_maps_key'),
 ]
 
 if settings.DEBUG:  # Solo para el entorno de desarrollo
