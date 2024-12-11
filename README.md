@@ -71,3 +71,22 @@ Couple-App es una aplicación diseñada para capturar y gestionar los recuerdos 
 ---
 
 Couple-App es el compañero perfecto para preservar los recuerdos de tus viajes. ¡Explora, gestiona y revive cada aventura con facilidad!
+
+## License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0). 
+
+You are free to:
+
+- Share — copy and redistribute the material in any medium, format, or platform.
+- Adapt — remix, transform, and build upon the material.
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- **NonCommercial** — You may not use the material for commercial purposes.
+
+You can view the full text of the license here:  
+[Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/).
+
+For more details, please refer to the [LICENSE](LICENSE) file in the repository.
