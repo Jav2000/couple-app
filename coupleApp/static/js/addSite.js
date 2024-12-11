@@ -4,6 +4,8 @@ async function handleSubmit(event) {
     const form = document.getElementById('dataForm'); // ID del formulario
     const formData = new FormData(form); // Recoge los datos del formulario
 
+    console.log(formData)
+    
     try {
       // Enviar datos al servidor mediante fetch
       const response = await fetch(form.action, {
@@ -30,7 +32,7 @@ async function handleSubmit(event) {
         showPopup(false, 'No se pudo conectar con el servidor. Inténtalo más tarde.');
     }
 }
-// Función para mostrar el popup
+
 function showPopup(success, message) {
     const popup = document.getElementById('popup');
     const popupMessage = document.getElementById('popupMessage');
@@ -52,4 +54,66 @@ function closePopup() {
     const popup = document.getElementById('popup');
     popup.style.display = 'none';
     window.location.href = '/sites';
+}
+
+const nameInput = document.querySelector("input[name='name']");
+const suggestionsList = document.getElementById("autocompleteSuggestions");
+
+nameInput.addEventListener("input", () => {
+    const query = nameInput.value;
+
+    if (query.length > 2) { // Evitar demasiadas consultas para cadenas cortas
+        fetchSuggestions(query);
+    } else {
+        suggestionsList.innerHTML = "";
+        suggestionsList.style.display= 'none';
+    }
+});
+
+function fetchSuggestions(query) {
+    // Configurar la solicitud para la API Places de Google
+    const service = new google.maps.places.AutocompleteService();
+
+    service.getPlacePredictions(
+        { input: query },
+        (predictions, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+                displaySuggestions(predictions);
+            } else {
+                suggestionsList.innerHTML = "";
+                suggestionsList.style.display= 'none';
+            }
+        }
+    );
+}
+
+function displaySuggestions(predictions) {
+    suggestionsList.innerHTML = ""; // Limpiar las sugerencias anteriores
+
+    predictions.forEach((prediction) => {
+        const suggestionItem = document.createElement("li");
+        suggestionItem.textContent = prediction.description;
+        suggestionItem.classList.add("suggestion-item");
+
+        suggestionItem.addEventListener("click", () => {
+            nameInput.value = prediction.description; // Actualizar el campo con la selección
+            suggestionsList.innerHTML = ""; // Limpiar las sugerencias
+            fetchPlaceDetails(prediction.place_id); // Obtener coordenadas del lugar seleccionado
+        });
+
+        suggestionsList.appendChild(suggestionItem);
+    });
+    suggestionsList.style.display= 'block';
+}
+
+function fetchPlaceDetails(placeId) {
+    const service = new google.maps.places.PlacesService(document.createElement("div"));
+
+    service.getDetails({ placeId }, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && place.geometry) {
+            // Rellenar los campos de latitud y longitud
+            document.querySelector("input[name='latitude']").value = place.geometry.location.lat();
+            document.querySelector("input[name='longitude']").value = place.geometry.location.lng();
+        }
+    });
 }

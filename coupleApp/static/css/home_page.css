@@ -1,37 +1,67 @@
+.home-logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .home-menu {
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo translúcido */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
-    padding: 40px; /* Espaciado interno */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
-    display: flex; /* Colocar elementos en una fila */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    gap: 60px; /* Espaciado entre opciones */
-    max-width: 100%; /* Ancho máximo del contenedor */
-    margin: auto; /* Centrar el menú */
-    transform: translateY(-100px); /* Mueve el menú hacia arriba 20px */
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    max-width: 100%;
+    margin: auto;
+    transform: translateY(-100px);
 }
 
 .home-menu ul {
-    padding: 0; /* Quitar espaciado por defecto */
-    margin: 0; /* Quitar márgenes */
-    display: flex; /* Hacer que los elementos estén en fila */
-    gap: 50px; /* Espaciado entre elementos */
-    list-style: none; /* Eliminar puntos */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 50px;
+    list-style: none;
 }
 
 .home-menu-item {
-    text-decoration: none; /* Quitar subrayado */
-    font-size: 1.2rem; /* Tamaño del texto */
-    color: #C71585; /* Color del texto */
-    font-weight: bold; /* Negrita */
-    padding: 15px 12px; /* Espaciado interno */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Efectos al pasar el ratón */
-    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #C71585;
+    font-weight: bold;
+    padding: 15px 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
 }
 
 .home-menu-item:hover {
-    background-color: #C71585; /* Fondo rosa al pasar el ratón */
-    color: white; /* Cambiar color del texto */
+    background-color: #C71585;
+    color: white;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .home-menu {
+        flex-direction: column; /* Align items vertically on smaller screens */
+        gap: 30px; /* Reduce the gap between items */
+        padding: 20px; /* Reduce padding */
+    }
+
+    .home-menu ul {
+        flex-direction: column; /* Stack the menu items vertically */
+        gap: 20px; /* Reduce the gap between items */
+    }
+
+    .home-menu-item {
+        font-size: 1rem; /* Adjust font size for mobile */
+        padding: 10px 15px; /* Adjust padding */
+    }
+    
+    .home-menu-item:hover {
+        background-color: #C71585;
+        color: white;
+    }
 }

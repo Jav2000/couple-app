@@ -19,7 +19,7 @@ fetch(geojsonUrl)
         onEachFeature: function(feature, layer) {
             // Popup con información del sitio
             layer.bindPopup(
-                `<strong>${feature.properties.nombre}</strong><br>${feature.properties.descripcion}`
+                `<strong>${feature.properties.name}</strong><br>${feature.properties.description}`
             );
             
             // Mostrar el popup cuando el ratón pase por encima (mouseover)

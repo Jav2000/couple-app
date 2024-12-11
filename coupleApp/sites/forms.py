@@ -9,4 +9,6 @@ class SiteForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
+            'latitude': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'longitude': forms.TextInput(attrs={'readonly': 'readonly'}),
         }

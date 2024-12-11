@@ -20,19 +20,23 @@
           </a>
       </div>
       <div class="header-content">
-          <h1>Añadir un nuevo sitio</h1>
+          <h1>Añadir fotos del viaje</h1>
       </div>
   </header>
 
   <div class="main-container">
-    <h2>Agregar Foto</h2>
-    <form method="post" enctype="multipart/form-data" id="dataForm">
-      {% csrf_token %}
-      <input type="file" name="images" id="images" multiple>
-      <button type="submit" id="uploadButton">Guardar Foto</button>
-    </form>
+    <div class="back-button-container">
+      <a href="{% url 'sites:site_details_page' pk=site.pk %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+    </div>
+    <main class="main-content">
+      <form method="post" enctype="multipart/form-data" id="dataForm" class="new-site-form">
+        {% csrf_token %}
+        <input type="file" name="images" id="images" class="upload-images" accept=".png, .jpg, .jpeg, .gif, .bmp, .tiff, .heic" multiple>
+        <button type="submit" id="uploadButton">Guardar fotos</button>
+      </form>
 
-    <div id="uploadProgressContainer" class="uploadProgressContainer"></div>
+      <div id="uploadProgressContainer" class="uploadProgressContainer"></div>
+    </main>
   </div>
 
   <div class="pop-up" id="popup">

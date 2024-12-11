@@ -12,6 +12,8 @@
     <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
 
     <script src="{% static 'js/gallery.js' %}" defer></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -24,57 +26,75 @@
             <h1>Detalles del sitio</h1>
         </div>
     </header>
-    
-    <main class="main-content">
-        <div class="site-details">
-            <header class="site-header">
-                <h2>{{ site.name }}</h2>
-                <p class="date">
-                    <strong>Fecha:</strong> 
-                    {{ site.start_date|date:"d M Y" }} - {{ site.end_date|date:"d M Y" }}
-                </p>
-            </header>
-    
-            <section class="description">
-                <h3>Descripción</h3>
-                <p>{{ site.description }}</p>
-            </section>
-    
-            <section class="photos">
-                <h3>Fotos del Viaje</h3>
-                {% if site.photos.all %}
-                    <div class="photos-gallery">
-                        {% for photo in site.photos.all %}
-                            <div class="photo-card">
-                                <img src="/media/{{ photo.image }}" alt="Foto de {{ site.name }}" class="trip-photo" onclick="openModal('/media/{{ photo.image }}')">
-                            </div>
-                        {% endfor %}
-                    </div>
-
-                    <div id="photo-modal" class="photo-modal">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <span class="nav-arrow left-arrow" onclick="navigateModal(-1)">&#10094;</span> <!-- Flecha izquierda -->
-                        <span class="nav-arrow right-arrow" onclick="navigateModal(1)">&#10095;</span> <!-- Flecha derecha -->
-                        <img class="modal-content" id="modal-image">
-                    </div>
-    
-                    <div class="add-photo-container">
-                        <a href="{% url 'sites:add_photos' pk=site.pk %}" class="btn-add-photo">
-                            <button type="button">Añadir Foto</button>
-                        </a>
-                    </div>
-                {% else %}
-                    <p>No hay fotos disponibles.</p>
-                    <div class="add-photo-container">
-                        <a href="{% url 'sites:add_photos' pk=site.pk %}" class="btn-add-photo">
-                            <button type="button">Añadir Foto</button>
-                        </a>
-                    </div>
-                {% endif %}
-            </section>
+    <div class="main-container">
+        <div class="back-button-container">
+            <a href="{% url 'sites:sites_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
         </div>
-    </main>
+        <main class="main-content">
+            <div class="site-details">
+                <header class="site-header">
+                    <div class="action-buttons">
+                        <a href="{% url 'sites:edit_site' site.pk %}" class="btn-edit"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="{% url 'sites:delete_site' site.pk %}" method="post" class="btn-delete-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este sitio?')"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                    <h2>{{ site.name }}</h2>
+                    <p class="date">
+                        <strong>Fecha:</strong> 
+                        {{ site.start_date|date:"d M Y" }} - {{ site.end_date|date:"d M Y" }}
+                    </p>
+                </header>
+        
+                <section class="description">
+                    <h3>Descripción</h3>
+                    <p>{{ site.description }}</p>
+                </section>
+        
+                <section class="photos">
+                    <h3>Fotos del Viaje</h3>
+                    {% if site.photos.all %}
+                        <div class="photos-gallery">
+                            {% for photo in site.photos.all %}
+                                <div class="photo-card">
+                                    <img src="/media/{{ photo.image }}" alt="Foto de {{ site.name }}" class="trip-photo" onclick="openModal('/media/{{ photo.image }}', '{{ forloop.counter0 }}', '{{photo.id}}')">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div id="photo-modal" class="photo-modal">
+                            <div class="modal-header">
+                                <button class="btn-download" onclick="downloadImage()"><i class="fas fa-download"></i></button>
+                                <button class="btn-delete" onclick="deleteImage('{{ site.pk }}', '{{ photo.id }}')"><i class="fas fa-trash-alt"></i></button>
+                                <span class="close" onclick="closeModal()">&times;</span>
+                            </div>
+                            <span class="nav-arrow left-arrow" onclick="navigateModal(-1)">&#10094;</span> <!-- Flecha izquierda -->
+                            <span class="nav-arrow right-arrow" onclick="navigateModal(1)">&#10095;</span> <!-- Flecha derecha -->
+                            <img class="modal-content" id="modal-image">
+                        </div>
 
+                        <div class="pop-up" id="popup">
+                            <p id="popupMessage"></p>
+                            <button onclick="closePopup('{{site.pk}}')">Cerrar</button>
+                        </div>
+        
+                        <div class="add-photo-container">
+                            <a href="{% url 'sites:add_photos' pk=site.pk %}" class="btn-add-photo">
+                                <button type="button">Añadir Foto</button>
+                            </a>
+                        </div>
+                    {% else %}
+                        <p>No hay fotos disponibles.</p>
+                        <div class="add-photo-container">
+                            <a href="{% url 'sites:add_photos' pk=site.pk %}" class="btn-add-photo">
+                                <button type="button">Añadir Foto</button>
+                            </a>
+                        </div>
+                    {% endif %}
+                </section>
+            </div>
+        </main>
+    </div>
     <footer class="footer">
         <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
     </footer>

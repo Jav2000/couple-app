@@ -1,7 +1,7 @@
 let images = [];
 let currentIndex = 0;
 
-function openModal(imageUrl, index) {
+function openModal(imageUrl, index, photoId) {
     const modal = document.getElementById('photo-modal');
     const modalImage = document.getElementById('modal-image');
 
@@ -10,6 +10,8 @@ function openModal(imageUrl, index) {
 
     modal.style.display = 'flex';
     modalImage.src = imageUrl;
+
+    modalImage.setAttribute('data-id', photoId);
 }
 
 function closeModal() {
@@ -29,6 +31,64 @@ function navigateModal(direction) {
     modalImage.src = images[currentIndex];
 }
 
-document.querySelectorAll('.photo-card img').forEach((img, index) => {
-    img.addEventListener('click', () => openModal(img.src, index));
-});
+function downloadImage() {
+    const modalImage = document.getElementById('modal-image');
+    const link = document.createElement('a');
+    link.href = modalImage.src;
+    link.download = modalImage.src.split('/').pop(); // Usamos el nombre de la imagen como nombre del archivo
+    link.click();
+}
+
+function deleteImage(siteId) {
+    const modalImage = document.getElementById('modal-image');
+    const photoId = modalImage.getAttribute('data-id');
+
+    if (confirm("¿Estás seguro de que deseas eliminar esta imagen?")) {
+        // Enviar solicitud AJAX al servidor para eliminar la imagen
+        fetch(`/sites/delete-photo/${photoId}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+        })
+        .then(async response => {
+            if (response.ok) {
+                const result = await response.json(); // Asumimos una respuesta en JSON
+                showPopup(true, '¡Sitio guardado correctamente!'); // Muestra éxito
+                setTimeout(() => {
+                    window.location.href = `/sites/${siteId}/`;
+                }, 20000); // Espera 2 segundos antes de redirigir
+            } else {
+                const errorData = await response.json();
+                console.error('Error del servidor:', errorData);
+                showPopup(false, 'Hubo un error al guardar el sitio. Revisa los datos.');
+            }
+        })
+        .catch(error => {
+            console.error('Error al eliminar la foto:', error);
+            alert('Error al eliminar la foto');
+        });
+    }
+}
+
+function showPopup(success, message) {
+    const popup = document.getElementById('popup');
+    const popupMessage = document.getElementById('popupMessage');
+
+    popupMessage.innerText = message;
+    if(success){
+        popup.classList.add('success');
+        popup.classList.remove('error');
+    }else{
+        popup.classList.add('error');
+        popup.classList.remove('success');
+    }
+
+    popup.style.display = 'block'; // Muestra el pop-up
+}
+
+function closePopup(siteId) {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+    window.location.href = `/sites/${siteId}/`;
+}

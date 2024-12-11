@@ -23,6 +23,8 @@ body {
     justify-content: center;  /* Centrar verticalmente */
     align-items: center;  /* Centrar horizontalmente */
     background-color: rgb(245, 190, 207);  /* Fondo claro */
+    min-height: calc(100vh - 160px);
+    overflow: hidden; /* Evita desbordamientos */
 }
 
 .main-content{
@@ -83,21 +85,24 @@ body {
 }
 
 /* Estilo del formulario */
-form {
-    background-color: #ffffff; /* Fondo blanco */
+.new-site-form {
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 600px; /* Ancho fijo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Usa el ancho completo del contenedor */
+    max-width: 600px; /* Límite máximo para pantallas grandes */
+    margin: 0 auto; /* Centrado */
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaciado entre campos */
+    align-items: center;
+    gap: 15px;
 }
 
 /* Estilo de los campos del formulario */
-form input,
-form textarea,
-form select {
+.new-site-form input,
+.new-site-form textarea,
+.new-site-form select {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -106,14 +111,14 @@ form select {
     transition: border-color 0.3s ease-in-out;
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
+.new-site-form input:focus,
+.new-site-form textarea:focus,
+.new-site-form select:focus {
     border-color: #c71585; /* Color en foco */
 }
 
 /* Botón de guardar */
-form button[type="submit"] {
+.new-site-form button[type="submit"] {
     background-color: #c71585; /* Color principal */
     color: #ffffff; /* Texto blanco */
     padding: 10px 15px;
@@ -124,7 +129,7 @@ form button[type="submit"] {
     transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
 
-form button[type="submit"]:hover {
+.new-site-form button[type="submit"]:hover {
     background-color: #a01068; /* Color más oscuro al pasar el mouse */
     transform: translateY(-3px); /* Efecto de elevación */
 }
@@ -168,7 +173,6 @@ form button[type="submit"]:hover {
     position: fixed;
     bottom: 40px;
     right: 10px;
-    width: 400px;
     max-height: 500px;
     overflow-y: auto;
     background-color: #f8f9fa; /* Fondo claro */
@@ -239,6 +243,73 @@ form button[type="submit"]:hover {
     margin-left: 10px;
 }
 
+/* Contenedor del formulario o del campo */
+.form-group {
+    position: relative; /* Establece un contexto para el posicionamiento absoluto */
+}
+
+/* Estilo de las sugerencias */
+.autocomplete-suggestions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    top: calc(100% + 5px); /* Justo debajo del campo con un pequeño margen */
+    left: 0; /* Alineado con el borde izquierdo del campo */
+    width: 100%; /* Coincide exactamente con el ancho del campo de entrada */
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para visibilidad */
+    border-radius: 4px; /* Bordes redondeados para un diseño moderno */
+    display: none;
+}
+
+/* Estilo de cada sugerencia */
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Asegúrate de que el campo de entrada no se vea afectado */
+input[name="name"] {
+    position: relative;
+    z-index: 1;
+}
+
+.back-button-container {
+    margin-top: 20px; /* Espacio por debajo del header */
+    margin-left: 20px; /* Espacio a la izquierda */
+    z-index: 10;
+}
+
+.btn-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Tamaño del círculo */
+    height: 40px; /* Tamaño del círculo */
+    background-color: rgb(197, 115, 139);
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px; /* Tamaño de la flecha */
+    border-radius: 50%; /* Hace el fondo circular */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Efecto al pasar el ratón */
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -249,7 +320,11 @@ form button[type="submit"]:hover {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
+    .header {
+        height: 100px; /* Reduce height for mobile */
+    }
+
     .header-content h1 {
         font-size: 2.2rem;
     }
@@ -258,17 +333,53 @@ form button[type="submit"]:hover {
         font-size: 1rem;
     }
 
-    .menu {
-        padding: 20px 0;
+    .logo-container {
+        display: none;
     }
 
-    .menu li {
-        display: block;
-        margin: 10px 0;
+    .logo {
+        width: 150px; /* Reduce logo size for mobile */
     }
 
-    .footer p {
-        font-size: 0.9rem;
+    .footer {
+        position: static; /* Cambia el footer a posición normal */
+        font-size: 0.9rem; /* Adjust footer font size */
+        padding: 5px; /* Adjust padding */
+    }
+
+    .new-site-form {
+        padding: 15px; /* Reduce el padding para móviles */
+        width: 80%; /* Ancho reducido para pantallas pequeñas */
+    }
+
+    .new-site-form input,
+    .new-site-form textarea,
+    .new-site-form select {
+        font-size: 14px; /* Ajusta el tamaño del texto */
+    }
+
+    .new-site-form button[type="submit"] {
+        font-size: 14px; /* Tamaño del botón más pequeño */
+        padding: 8px 12px; /* Menor padding */
+    }
+
+    .new-site-form textarea[name="description"] {
+        width: 90%; /* Ajusta el ancho al 80% del formulario */
+        max-width: 500px; /* Establece un ancho máximo */
+        height: 100px; /* Reduce la altura */
+        resize: vertical; /* Permite solo redimensionar verticalmente */
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+    }
+
+    .upload-images{
+        width: 90%;
+    }
+
+    .pop-up {
+        width: 90%; /* Ajusta al ancho de la pantalla */
     }
 
     .site-header h2 {

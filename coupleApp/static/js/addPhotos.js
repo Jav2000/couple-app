@@ -13,11 +13,6 @@ document.getElementById('uploadButton').addEventListener('click', (event) => {
         alert('Por favor, selecciona al menos un archivo.');
         return;
     }
-
-    // Crear la solicitud AJAX
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', form.action, true);
-    xhr.setRequestHeader('X-CSRFToken', csrfToken);
     
     Array.from(files).forEach((file, index) => {
         // Crear elementos para el progreso
@@ -36,6 +31,11 @@ document.getElementById('uploadButton').addEventListener('click', (event) => {
         progressWrapper.appendChild(fileInfo);
         progressWrapper.appendChild(progressBar);
         uploadContainer.appendChild(progressWrapper);
+
+        // Crear la solicitud AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.setRequestHeader('X-CSRFToken', csrfToken);
 
         xhr.upload.addEventListener('progress', (e) => {
             if (e.lengthComputable) {
@@ -70,72 +70,10 @@ document.getElementById('uploadButton').addEventListener('click', (event) => {
         };
 
         uploadContainer.style.display = 'block'
+
+        // Enviar datos
+        const formData = new FormData();
+        formData.append('image', file);
+        xhr.send(formData);
     });
-
-    // Enviar datos
-    const formData = new FormData(form);
-    formData.append('images', files);
-    xhr.send(formData);
 });
-
-// async function handleSubmit(event) {
-//     event.preventDefault(); // Evita el envío por defecto del formulario
-
-//     const form = document.getElementById('dataForm'); // ID del formulario
-//     const formData = new FormData(form); // Recoge los datos del formulario
-
-//     const url = window.location.pathname;
-//     const pk = url.split('/')[2];
-
-//     try {
-//       // Enviar datos al servidor mediante fetch
-//       const response = await fetch(form.action, {
-//           method: 'POST',
-//           body: formData,
-//           headers: {
-//               'X-Requested-With': 'XMLHttpRequest', // Indica que es una solicitud AJAX
-//           },
-//       });
-//       // Comprobamos si la respuesta es correcta
-//       if (response.ok) {
-//           const result = await response.json(); // Asumimos una respuesta en JSON
-//           showPopup(true, '¡Foto guardada correctamente!'); // Muestra éxito
-//           setTimeout(() => {
-//               window.location.href = '/sites/' + pk;
-//           }, 20000); // Espera 2 segundos antes de redirigir
-//       } else {
-//           const errorData = await response.json();
-//           console.error('Error del servidor:', errorData);
-//           showPopup(false, 'Hubo un error al guardar el sitio. Revisa los datos.');
-//       }
-//     }catch(error){
-//         console.error('Error de conexión:', error);
-//         showPopup(false, 'No se pudo conectar con el servidor. Inténtalo más tarde.');
-//     }
-// }
-// // Función para mostrar el popup
-// function showPopup(success, message) {
-//     const popup = document.getElementById('popup');
-//     const popupMessage = document.getElementById('popupMessage');
-
-//     popupMessage.innerText = message;
-//     if(success){
-//         popup.classList.add('success');
-//         popup.classList.remove('error');
-//     }else{
-//         popup.classList.add('error');
-//         popup.classList.remove('success');
-//     }
-
-//     popup.style.display = 'block'; // Muestra el pop-up
-// }
-
-// // Función para cerrar el pop-up
-// function closePopup() {
-//     const url = window.location.pathname;
-//     const pk = url.split('/')[2];
-
-//     const popup = document.getElementById('popup');
-//     popup.style.display = 'none';
-//     window.location.href = '/sites/' + pk;
-// }
