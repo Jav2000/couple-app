@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        python coupleApp/manage.py test
 
     # Common security vulnerabilities
     - name: Install bandit
