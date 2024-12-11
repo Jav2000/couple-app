@@ -35,6 +35,9 @@
     </header>
 
     <div class="main-container">
+        <div class="back-button-container">
+            <a href="{% url 'core:home_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+        </div>
         <main class="main-content">
             <div id="add-site-container" class="add-site-container">
                 <a href="{% url 'sites:new_site' %}" class="btn-add">
