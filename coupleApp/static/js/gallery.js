@@ -39,13 +39,13 @@ function downloadImage() {
     link.click();
 }
 
-function deleteImage(siteId) {
+function deleteImage(tripId) {
     const modalImage = document.getElementById('modal-image');
     const photoId = modalImage.getAttribute('data-id');
 
     if (confirm("¿Estás seguro de que deseas eliminar esta imagen?")) {
         // Enviar solicitud AJAX al servidor para eliminar la imagen
-        fetch(`/sites/delete-photo/${photoId}/`, {
+        fetch(`/trips/delete-photo/${photoId}/`, {
             method: 'DELETE',
             headers: {
                 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
@@ -56,7 +56,7 @@ function deleteImage(siteId) {
                 const result = await response.json(); // Asumimos una respuesta en JSON
                 showPopup(true, '¡Sitio guardado correctamente!'); // Muestra éxito
                 setTimeout(() => {
-                    window.location.href = `/sites/${siteId}/`;
+                    window.location.href = `/trips/${tripId}/`;
                 }, 20000); // Espera 2 segundos antes de redirigir
             } else {
                 const errorData = await response.json();
@@ -87,8 +87,8 @@ function showPopup(success, message) {
     popup.style.display = 'block'; // Muestra el pop-up
 }
 
-function closePopup(siteId) {
+function closePopup(tripId) {
     const popup = document.getElementById('popup');
     popup.style.display = 'none';
-    window.location.href = `/sites/${siteId}/`;
+    window.location.href = `/trips/${tripId}/`;
 }

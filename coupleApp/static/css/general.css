@@ -85,7 +85,7 @@ body {
 }
 
 /* Estilo del formulario */
-.new-site-form {
+.new-trip-form {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -100,9 +100,9 @@ body {
 }
 
 /* Estilo de los campos del formulario */
-.new-site-form input,
-.new-site-form textarea,
-.new-site-form select {
+.new-trip-form input,
+.new-trip-form textarea,
+.new-trip-form select {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -111,14 +111,14 @@ body {
     transition: border-color 0.3s ease-in-out;
 }
 
-.new-site-form input:focus,
-.new-site-form textarea:focus,
-.new-site-form select:focus {
+.new-trip-form input:focus,
+.new-trip-form textarea:focus,
+.new-trip-form select:focus {
     border-color: #c71585; /* Color en foco */
 }
 
 /* Botón de guardar */
-.new-site-form button[type="submit"] {
+.new-trip-form button[type="submit"] {
     background-color: #c71585; /* Color principal */
     color: #ffffff; /* Texto blanco */
     padding: 10px 15px;
@@ -129,7 +129,7 @@ body {
     transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
 
-.new-site-form button[type="submit"]:hover {
+.new-trip-form button[type="submit"]:hover {
     background-color: #a01068; /* Color más oscuro al pasar el mouse */
     transform: translateY(-3px); /* Efecto de elevación */
 }
@@ -347,23 +347,23 @@ input[name="name"] {
         padding: 5px; /* Adjust padding */
     }
 
-    .new-site-form {
+    .new-trip-form {
         padding: 15px; /* Reduce el padding para móviles */
         width: 80%; /* Ancho reducido para pantallas pequeñas */
     }
 
-    .new-site-form input,
-    .new-site-form textarea,
-    .new-site-form select {
+    .new-trip-form input,
+    .new-trip-form textarea,
+    .new-trip-form select {
         font-size: 14px; /* Ajusta el tamaño del texto */
     }
 
-    .new-site-form button[type="submit"] {
+    .new-trip-form button[type="submit"] {
         font-size: 14px; /* Tamaño del botón más pequeño */
         padding: 8px 12px; /* Menor padding */
     }
 
-    .new-site-form textarea[name="description"] {
+    .new-trip-form textarea[name="description"] {
         width: 90%; /* Ajusta el ancho al 80% del formulario */
         max-width: 500px; /* Establece un ancho máximo */
         height: 100px; /* Reduce la altura */
@@ -382,11 +382,11 @@ input[name="name"] {
         width: 90%; /* Ajusta al ancho de la pantalla */
     }
 
-    .site-header h2 {
+    .trip-header h2 {
         font-size: 1.5rem;
     }
 
-    .site-header .fecha {
+    .trip-header .fecha {
         font-size: 0.9rem;
     }
 

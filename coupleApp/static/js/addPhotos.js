@@ -2,6 +2,7 @@ document.getElementById('uploadButton').addEventListener('click', (event) => {
     event.preventDefault(); // Prevenir recarga de página
 
     const form = document.getElementById('dataForm');
+    
     const files = document.getElementById('images').files;
     
     const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
@@ -35,6 +36,9 @@ document.getElementById('uploadButton').addEventListener('click', (event) => {
         // Crear la solicitud AJAX
         const xhr = new XMLHttpRequest();
         xhr.open('POST', form.action, true);
+
+        console.log(form.action)
+        
         xhr.setRequestHeader('X-CSRFToken', csrfToken);
 
         xhr.upload.addEventListener('progress', (e) => {

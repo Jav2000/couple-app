@@ -1,0 +1,141 @@
+.trips-container-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Agrega espacio alrededor del carrusel */
+    overflow: visible; /* Permitir que los elementos secundarios se expandan fuera de los límites */
+}
+
+.trips-container {
+    display: flex;
+    overflow-x: hidden; /* Ocultar contenido que no quepa en el contenedor */
+    scroll-behavior: smooth;
+    justify-content: start; /* Asegura que las tarjetas se alineen desde el principio */
+    width: 90%;
+}
+
+/* Tarjetas individuales */
+.trip-card {
+    flex: 0 0 32.5%; /* Cada tarjeta ocupa un tercio del espacio visible */
+    margin: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+    position: relative;
+    z-index: 1; /* Eleva la tarjeta para que no quede cortada */
+    padding: 10px 10px 0px;
+}
+
+.trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.trip-card a {
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit; /* Usa el color del texto heredado del contenedor */
+}
+
+.trip-card a:hover {
+    text-decoration: none; /* Asegúrate de que no aparezca subrayado tampoco al pasar el ratón */
+    color: #C71585; /* Opcional: cambia el color al hacer hover */
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+    border: 2px solid #C71585; /* Borde visible */
+    color: #C71585; /* Color del texto o símbolo de la flecha */
+    border-radius: 50%; /* Forma circular */
+    padding: 15px; /* Tamaño del botón */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para que resalte */
+    z-index: 100; /* Asegura que estén por encima del contenido */
+    font-size: 20px; /* Aumenta el tamaño del texto de la flecha */
+}
+    
+.scroll-btn.left {
+    left: 10px; /* Posición a la izquierda */
+}
+    
+.scroll-btn.right {
+    right: 10px; /* Posición a la derecha */
+}
+    
+.scroll-btn:hover {
+    background-color: #C71585; /* Fondo rosa oscuro al pasar el ratón */
+    color: #fff; /* Cambia el color del texto */
+}
+    
+.scroll-btn:focus {
+    outline: none; /* Quita el contorno predeterminado */
+}
+
+.add-trip-container {
+    display: flex;          /* Usamos flexbox para alinear los elementos */
+    justify-content: center;/* Centrar horizontalmente */
+    align-items: center;    /* Centrar verticalmente */
+}
+.btn-add {
+    display: inline-block;
+    margin-top: 20px;
+}
+  
+.btn-add button {
+    padding: 10px 20px;     /* Espaciado interno */
+    font-size: 16px;        /* Tamaño de la fuente */
+    background-color: #C71585; /* Color de fondo del botón */
+    color: white;           /* Color del texto */
+    border: none;           /* Eliminar el borde predeterminado */
+    border-radius: 8px;     /* Bordes redondeados */
+    cursor: pointer;       /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+  
+.btn-add button:hover {
+    background-color: #A7006B; /* Un tono más oscuro */
+}
+
+.map-container {
+    display: flex;            /* Activa Flexbox */
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    width: 100%;              /* Asegura que ocupe todo el ancho disponible */
+    margin: 20px 0;           /* Añade espacio superior e inferior */
+}
+
+#map {
+    height: 30vh;             /* Ajusta la altura según lo necesites */
+    width: 50%;               /* Ajusta el ancho para que no ocupe todo el espacio */
+    border: 2px solid #C71585; /* Opcional: añade un borde decorativo */
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Cambia a disposición en columna */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+
+    .trips-container {
+        flex-wrap: wrap; /* Permite que las tarjetas salten a una nueva línea */
+        justify-content: center;
+    }
+
+    .trip-card {
+        flex: 0 0 90%; /* Haz que las tarjetas ocupen casi todo el ancho */
+    }
+
+    .scroll-btn {
+        display: none; /* Oculta los botones de desplazamiento */
+    }
+
+    #map {
+        height: 20vh; /* Haz que el mapa ocupe más espacio */
+    }
+}
