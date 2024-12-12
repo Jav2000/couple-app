@@ -1,0 +1,25 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+# Configuración de Dependabot para actualizar dependencias automáticamente
+version: 2
+updates:
+  # Actualizaciones para dependencias de Python
+  - package-ecosystem: "pip" # Ecosistema de paquetes para Python
+    directory: "/"           # Directorio donde se encuentra el archivo requirements.txt
+    schedule:
+      interval: "weekly"     # Intervalo de ejecución: semanal
+    open-pull-requests-limit: 10 # Límite de PR abiertas
+    ignore:
+      - dependency-name: "django" # Ejemplo: ignora actualizaciones de Django
+        versions: ["<4.0.0"]      # Ignora versiones menores a 4.0.0
+
+  # Configuración opcional para GitHub Actions (si usas workflows)
+  - package-ecosystem: "github-actions"
+    directory: "/"           # Directorio de los workflows en .github/workflows
+    schedule:
+      interval: "daily"      # Intervalo de ejecución: diario
+    open-pull-requests-limit: 5
+        
