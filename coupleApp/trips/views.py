@@ -79,7 +79,6 @@ def delete_trip(request, pk):
     return render(request, 'delete_confirmation.html', {'trip': trip})
 
 def add_trip_photos(request, pk):
-    print("Hola")
     trip = get_object_or_404(Trip, pk=pk)
 
     if request.method == 'POST':

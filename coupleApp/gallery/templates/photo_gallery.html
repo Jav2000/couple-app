@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Sitios Visitados{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/photo_gallery.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/photo_gallery.js' %}" defer></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Sitios donde hemos estado</h1>
+            <p>Aquí puedes ver todos los lugares en los que hemos estado y añadir los nuevos a donde vayamos.</p>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="back-button-container">
+            <a href="{% url 'core:home_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+        </div>
+        <main class="main-content">
+            <section class="gallery-container">
+                {% if photos %}
+                    <div class="gallery-grid" id="gallery-grid">
+                        {% for photo in photos %}
+                            <div class="gallery-item">
+                                <div class="image-container">
+                                    <img src="{{ photo.image.url }}" alt="{{ photo.description|default:"Sin descripción" }}" onclick="openModal('/media/{{ photo.image }}', '{{ forloop.counter0 }}', '{{photo.id}}')">
+                                </div>
+                                <p class="gallery-text">{{ photo.trip.destiny|default:"Sin destino" }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="photo-modal" class="photo-modal">
+                        <div class="modal-header">
+                            <button class="btn-download" onclick="downloadImage()"><i class="fas fa-download"></i></button>
+                            <button class="btn-delete" onclick="deleteImage('{{ trip.pk }}', '{{ photo.id }}')"><i class="fas fa-trash-alt"></i></button>
+                            <span class="close" onclick="closeModal()">&times;</span>
+                        </div>
+                        <span class="nav-arrow left-arrow" onclick="navigateModal(-1)">&#10094;</span> <!-- Flecha izquierda -->
+                        <span class="nav-arrow right-arrow" onclick="navigateModal(1)">&#10095;</span> <!-- Flecha derecha -->
+                        <img class="modal-content" id="modal-image">
+                    </div>
+                {% else %}
+                    <p>No hay fotos disponibles en la galería.</p>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+    </footer>
+</body>
+</html>

@@ -6,12 +6,15 @@ function openModal(imageUrl, index, photoId) {
     const modalImage = document.getElementById('modal-image');
 
     images = Array.from(document.querySelectorAll('.photo-card img')).map(img => img.src);
-    currentIndex = index;
-
+    
+    currentIndex = Number(index);
+    
     modal.style.display = 'flex';
     modalImage.src = imageUrl;
 
     modalImage.setAttribute('data-id', photoId);
+
+    document.body.style.overflow = 'hidden'; 
 }
 
 function closeModal() {
@@ -21,15 +24,33 @@ function closeModal() {
 
 function navigateModal(direction) {
     const modalImage = document.getElementById('modal-image');
-    
+
     currentIndex += direction;
     if (currentIndex < 0) {
         currentIndex = images.length - 1; 
     } else if (currentIndex >= images.length) {
+        console.log(currentIndex)
         currentIndex = 0; 
     }
+
     modalImage.src = images[currentIndex];
 }
+
+const modal = document.getElementById('photo-modal');
+
+modal.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX; // Almacena la posición inicial
+});
+
+modal.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].pageX; // Obtén la posición final
+    console.log(endX)
+    if (startX - endX > 50) {
+        navigateModal(1); // Deslizar a la siguiente imagen
+    } else if (endX - startX > 50) {
+        navigateModal(-1); // Deslizar a la imagen anterior
+    }
+});
 
 function downloadImage() {
     const modalImage = document.getElementById('modal-image');

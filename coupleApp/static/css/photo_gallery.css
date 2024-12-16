@@ -1,0 +1,79 @@
+.gallery-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    width: 200px; /* Puedes ajustar el tamaño según tu diseño */
+    text-align: center;
+}
+
+.image-container {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Mantén una proporción fija (ajústala según tus necesidades) */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Color de fondo para rellenar el espacio vacío */
+    border-radius: 10px; /* Opcional: para esquinas redondeadas */
+    cursor: pointer;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para llenar el contenedor */
+}
+
+.gallery-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+        padding: 20px;
+    }
+    
+    .gallery-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        width: 100px;
+        text-align: center;
+    }
+    
+    .image-container {
+        width: 100%;
+        aspect-ratio: 4 / 3; /* Mantén una proporción fija (ajústala según tus necesidades) */
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0; /* Color de fondo para rellenar el espacio vacío */
+        border-radius: 10px; /* Opcional: para esquinas redondeadas */
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Recorta la imagen para llenar el contenedor */
+    }
+    
+    .gallery-text {
+        display: none;
+    }
+}
