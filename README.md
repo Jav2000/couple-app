@@ -6,50 +6,94 @@ Couple-App es una aplicación diseñada para capturar y gestionar los recuerdos 
 
 ## 🚀 Funcionalidades
 
-### 1. Lista de los sitios a los que hemos viajado
-- Visualiza una lista completa de los destinos visitados.
-- Cada sitio muestra información clave como:
-  - Nombre del lugar.
-  - Descripción.
+### 1. Viajes que hemos hecho
+- Visualiza una lista completa de los viajes realizados.
+- Cada viaje muestra información clave como:
+  - Nombre del viaje.
   - Fechas de inicio y fin del viaje.
+  - Lugares visitados.
 
-### 2. Mapa con puntos en los sitios que hemos estado
-- Un mapa interactivo que marca con pines todos los lugares visitados.
-- Haciendo clic en un punto, puedes acceder a los detalles del sitio correspondiente.
+### 2. Mapa con puntos de los lugares visitados
+- Un mapa interactivo que marca con pines todos los destinos visitados.
+- Haciendo clic en un punto, puedes acceder a los detalles del viaje y sus lugares correspondientes.
 
-### 3. Añadir un nuevo sitio
-- Agrega información sobre nuevos destinos:
-  - Nombre.
+### 3. Añadir un nuevo viaje
+- Agrega información sobre nuevos viajes:
+  - Nombre del viaje.
   - Descripción.
-  - Ubicación (coordenadas de latitud y longitud).
-  - Fechas del viaje.
-- Validación para asegurarse de que las fechas de inicio y fin sean coherentes.
+  - Fechas de inicio y fin.
+  - Ubicación de los lugares visitados.
+- Permite subir fotos asociadas al viaje directamente desde tu dispositivo.
 
-### 4. Editar sitio
-- Actualiza los detalles de un lugar ya registrado:
-  - Modifica información como nombre, descripción, fechas, o ubicación.
+### 4. Editar un viaje
+- Actualiza los detalles de un viaje ya registrado:
+  - Modifica información como nombre, fechas, descripción o lugares.
+  - Añade nuevas fotos o elimina las existentes.
 
-### 5. Eliminar sitio
-- Borra un destino de la lista.
-- Se elimina también toda la información asociada, incluidas las fotos del lugar.
+### 5. Eliminar un viaje
+- Borra un destino de la lista de viajes.
+- Se elimina toda la información asociada al viaje, incluidas las fotos del mismo.
 
-### 6. Visualizar las fotos de cada sitio
-- Explora una galería de imágenes para cada destino.
-- Al hacer clic en una foto:
-  - Se abre un modal con la imagen en tamaño grande.
-  - Se pueden navegar las fotos del sitio en la misma ventana.
+### 6. Visualizar fotos de cada viaje
+- Explora una galería de imágenes asociadas a cada viaje.
+- Al hacer clic en una foto, se abre un modal con la imagen en tamaño grande.
+- Navega por todas las fotos del viaje en la misma ventana.
 
-### 7. Añadir fotos a sitios
+### 7. Añadir fotos a los viajes
 - Sube imágenes directamente desde tu dispositivo para cualquier destino.
 - Organización automática en carpetas según fecha y lugar.
 
-### 8. Eliminar foto
-- Elimina imágenes no deseadas desde la galería de un sitio.
-- El archivo correspondiente también se elimina físicamente del servidor.
+### 8. Eliminar fotos
+- Elimina imágenes no deseadas desde la galería de un viaje.
+- El archivo correspondiente se elimina físicamente del servidor.
 
-### 9. Descargar foto en el dispositivo
-- Descarga tus fotos favoritas directamente desde la galería.
-- Botón de descarga accesible desde el modal al visualizar una imagen.
+### 9. Visualizar los productos de maquillaje
+- Visualiza todos los productos de maquillaje que has añadido, organizados por categorías y subcategorías.
+- Cada producto muestra detalles como:
+  - Nombre del producto.
+  - Marca.
+  - Descripción.
+  - Fotos asociadas.
+
+### 10. Añadir un producto de maquillaje
+- Agrega nuevos productos de maquillaje a tu colección:
+  - Nombre del producto.
+  - Marca.
+  - Categoría (por ejemplo, "rostro", "ojos").
+  - Subcategoría (por ejemplo, "base", "rimel").
+  - Fotos del producto.
+
+### 11. Editar un producto de maquillaje
+- Modifica la información de un producto ya registrado:
+  - Cambia el nombre, marca, categoría, subcategoría, o agrega nuevas fotos.
+
+### 12. Eliminar un producto de maquillaje
+- Borra un producto de la colección de maquillaje.
+- Se elimina la información asociada al producto, incluidas las fotos del mismo.
+
+### 13. Filtrar productos de maquillaje
+- Filtra los productos por categoría y subcategoría.
+- Permite ordenar los productos según su nombre, categoría o fecha de adición.
+
+### 14. Visualizar las fotos asociadas a un producto
+- Al hacer clic en un producto, puedes visualizar las fotos que has subido asociadas a dicho producto.
+- Se puede hacer clic en las fotos para verlas en tamaño completo.
+
+---
+
+## 🔮 Futuras Funcionalidades
+
+### 1. Mejoras visuales
+- **Rediseño de la interfaz**: Implementación de un diseño visual más atractivo y moderno, mejorando la experiencia de usuario.
+- **Optimización móvil**: La aplicación será completamente responsiva y optimizada para dispositivos móviles y tabletas.
+
+### 2. Mejoras en los filtros de los productos de maquillaje
+- **Filtros avanzados**: Filtros adicionales para buscar productos de maquillaje por atributos como tipo de piel, precio y más.
+- **Ordenación de productos**: Los usuarios podrán ordenar los productos por criterios como la fecha de adición, nombre, o marca.
+
+### 3. Poder visualizar los gastos por mes en un gráfico
+- **Registro de compras**: Los usuarios podrán registrar sus compras de maquillaje.
+- **Gráfico de gastos**: Los gastos de maquillaje se mostrarán en gráficos interactivos, permitiendo a los usuarios visualizar cuánto han gastado cada mes.
 
 ---
 
