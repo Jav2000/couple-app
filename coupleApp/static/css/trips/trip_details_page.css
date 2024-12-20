@@ -1,0 +1,67 @@
+.photos p {
+    text-align: center;
+    font-size: 1rem;
+    color: #777;
+}
+.photos-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.photo-card {
+    width: 150px; /* Ajusta el tamaño de la miniatura */
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-card:hover {
+    transform: scale(1.05);
+}
+
+.add-photo-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-add-photo button {
+    background-color: #C71585;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-add-photo button:hover {
+    background-color: #9b2064;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: row; /* Mantener botones en línea en lugar de apilarlos */
+        justify-content: center; /* Centrar botones horizontalmente */
+        align-items: center; /* Centrar botones verticalmente dentro del contenedor */
+        width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+        gap: 30%; /* Espaciado entre botones */
+    }
+
+    .action-buttons a.btn-edit,
+    .action-buttons form .btn-delete {
+        font-size: 14px; /* Ajuste del texto */
+        width: 120px; /* Ajustar ancho en pantallas pequeñas */
+        height: 45px; /* Ajustar altura en pantallas pequeñas */
+    }
+}

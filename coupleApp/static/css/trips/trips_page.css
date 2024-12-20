@@ -77,31 +77,6 @@
     outline: none; /* Quita el contorno predeterminado */
 }
 
-.add-trip-container {
-    display: flex;          /* Usamos flexbox para alinear los elementos */
-    justify-content: center;/* Centrar horizontalmente */
-    align-items: center;    /* Centrar verticalmente */
-}
-.btn-add {
-    display: inline-block;
-    margin-top: 20px;
-}
-  
-.btn-add button {
-    padding: 10px 20px;     /* Espaciado interno */
-    font-size: 16px;        /* Tamaño de la fuente */
-    background-color: #C71585; /* Color de fondo del botón */
-    color: white;           /* Color del texto */
-    border: none;           /* Eliminar el borde predeterminado */
-    border-radius: 8px;     /* Bordes redondeados */
-    cursor: pointer;       /* Cambiar el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease; /* Efecto de transición */
-}
-  
-.btn-add button:hover {
-    background-color: #A7006B; /* Un tono más oscuro */
-}
-
 .map-container {
     display: flex;            /* Activa Flexbox */
     justify-content: center;  /* Centra horizontalmente */

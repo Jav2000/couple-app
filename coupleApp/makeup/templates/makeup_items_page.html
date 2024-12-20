@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    {% load custom_filters %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Productos de maquillaje{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/makeup/makeup_items_page.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <script src="{% static 'js/makeup/makeup_items_page.js' %}" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Lista de maquillaje</h1>
+            <p>Aquí puedes ver todos los productos de maquillaje que tienes o quieres.</p>
+        </div>
+    </header>
+    <nav class="makeup-desktop-menu">
+        <ul class="categories">
+            <li class="category">
+                <a href="{% url 'makeup:category_items' 'rostro' %}">Rostro</a>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'bases_maquillaje' %}">Bases de maquillaje</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'colorete' %}">Colorete</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'bronceadores' %}">Bronceadores y contouring</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'correctores' %}">Correctores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'iluminadores' %}">Iluminadores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'fijadores' %}">Fijadores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'polvos' %}">Polvos</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'prebases_rostro' %}">Prebases</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <a href="{% url 'makeup:category_items' 'ojos' %}">Ojos</a>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'mascara' %}">Máscaras</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'sombras' %}">Sombras de ojos</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'lapices' %}">Lápices de ojos</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'cejas' %}">Cejas</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'delineadores' %}">Delineadores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'prebases_ojos' %}">Prebases para ojos</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <a href="{% url 'makeup:category_items' 'labios' %}">Labios</a>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'labiales' %}">Labiales</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'brillos_labios' %}">Brillos de labios</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'lapices_contorno' %}">Lápices contorno</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'prebases_labios' %}">Prebases para labios</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <a href="{% url 'makeup:category_items' 'manos' %}">Manos</a>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'esmaltes' %}">Esmaltes</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'cuidado_unas' %}">Cuidado de las uñas</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'manicura_francesa' %}">Manicura francesa</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'quitaesmaltes' %}">Quitaesmaltes</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'fijadores_esmalte' %}">Fijadores de esmalte de uñas</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <a href="{% url 'makeup:category_items' 'paletas' %}">Paletas</a>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:subcategory_items' 'paletas' 'paletas_rostro' %}">Paletas para rostro</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'paletas' 'paletas_ojos' %}">Paletas para ojos</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <nav class="makeup-mobile-menu">
+        <button class="menu-toggle">☰ Categorías</button>
+        <ul class="categories">
+            <li class="category">
+                <span>Rostro</span>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:category_items' 'rostro' %}">Ver todo</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'bases_maquillaje' %}">Bases de maquillaje</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'colorete' %}">Colorete</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'bronceadores' %}">Bronceadores y contouring</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'correctores' %}">Correctores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'iluminadores' %}">Iluminadores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'fijadores' %}">Fijadores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'polvos' %}">Polvos</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'rostro' 'prebases_rostro' %}">Prebases</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <span>Ojos</span>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:category_items' 'ojos' %}">Ver todo</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'mascara' %}">Máscaras</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'sombras' %}">Sombras de ojos</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'lapices' %}">Lápices de ojos</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'cejas' %}">Cejas</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'delineadores' %}">Delineadores</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'ojos' 'prebases_ojos' %}">Prebases para ojos</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <span>Labios</span>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:category_items' 'labios' %}">Ver todo</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'labiales' %}">Labiales</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'brillos_labios' %}">Brillos de labios</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'lapices_contorno' %}">Lápices contorno</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'labios' 'prebases_labios' %}">Prebases para labios</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <span>Manos</span>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:category_items' 'manos' %}">Ver todo</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'esmaltes' %}">Esmaltes</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'cuidado_unas' %}">Cuidado de las uñas</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'manicura_francesa' %}">Manicura francesa</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'quitaesmaltes' %}">Quitaesmaltes</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'manos' 'fijadores_esmalte' %}">Fijadores de esmalte de uñas</a></li>
+                </ul>
+            </li>
+            <li class="category">
+                <span>Paletas</span>
+                <ul class="subcategories">
+                    <li><a href="{% url 'makeup:category_items' 'paletas' %}">Ver todo</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'paletas' 'paletas_rostro' %}">Paletas para rostro</a></li>
+                    <li><a href="{% url 'makeup:subcategory_items' 'paletas' 'paletas_ojos' %}">Paletas para ojos</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="header-bar">
+        <div class="back-button-container">
+            <a href="{% url 'core:home_page' %}" class="btn-back">&#8592;</a>
+        </div>
+        <div class="add-buttons-container">
+            <div id="add-button-container" class="add-button-container">
+                <a href="{% url 'makeup:new_owned_item' %}" class="btn-add">
+                    <button type="button">Lo tengo</button>
+                </a>
+            </div>
+            <div id="add-button-container" class="add-button-container">
+                <a href="{% url 'makeup:new_wanted_item' %}" class="btn-add">
+                    <button type="button">Lo quiero</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">
+            <div class="responsive-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th class="desktop-only">Categoría</th>
+                            <th class="desktop-only">Sub Categoría</th>
+                            <th class="desktop-only">Descripción</th>
+                            <th class="desktop-only">Lo tengo</th>
+                            <th>Detalles</th> <!-- Nueva columna -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.brand }}</td>
+                            <td class="desktop-only">{{ item.category }}</td>
+                            <td class="desktop-only">{{ item.subcategory|subcategory_label }}</td>
+                            <td class="desktop-only">{{ item.description|default:"Sin descripción" }}</td>
+                            <td class="desktop-only" style="text-align: center;">
+                                {% if item.owned %}
+                                    <i class="fas fa-check" style="color: green;"></i> <!-- Tick -->
+                                {% else %}
+                                    <i class="fas fa-times" style="color: red;"></i> <!-- Cruz -->
+                                {% endif %}
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="{% url 'makeup:item_details_page' item.pk %}?redirect_to={% url 'makeup:makeup_items_page' %}" class="btn-details">
+                                    <i class="fas fa-eye"></i> <!-- Icono de ojo -->
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">No hay productos disponibles.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+<footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+</footer>
+</html>

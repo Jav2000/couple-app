@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Añadir sitio{% endblock %}</title>
+    <title>{% block title %}Añadir fotos del viaje{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'css/general.css' %}">
     <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
 
-    <script src="{% static 'js/add_trip_photos.js' %}" defer></script>
+    <script src="{% static 'js/trips/add_trip_photos.js' %}" defer></script>
 </head>
 <body>
   <header class="header">
@@ -23,13 +23,14 @@
           <h1>Añadir fotos del viaje</h1>
       </div>
   </header>
-
-  <div class="main-container">
+  <div class="header-bar">
     <div class="back-button-container">
       <a href="{% url 'trips:trip_details_page' pk=trip.pk %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
     </div>
+  </div>
+  <div class="main-container">
     <main class="main-content">
-      <form method="post" enctype="multipart/form-data" id="dataForm" class="new-trip-form">
+      <form method="post" enctype="multipart/form-data" id="dataForm" class="new-form">
         {% csrf_token %}
         <input type="file" name="images" id="images" class="upload-images" accept=".png, .jpg, .jpeg, .gif, .bmp, .tiff, .heic" multiple>
         <button type="submit" id="uploadButton">Guardar fotos</button>

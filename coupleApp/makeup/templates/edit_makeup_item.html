@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Editar producto{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/makeup/edit_makeup_item.js' %}" defer></script>
+    <script>
+        const subcategory = "{{item.subcategory}}";
+    </script>
+</head>
+<body>
+  <header class="header">
+      <div class="logo-container">
+          <a href="{% url 'core:home_page' %}">
+            <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+          </a>
+      </div>
+      <div class="header-content">
+          <h1>Editar producto: {{ item.name }}</h1>
+      </div>
+  </header>
+
+  <div class="main-container">
+    <div class="back-button-container">
+      <a href="{% url 'makeup:item_details_page' item.pk%}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+    </div>
+    <main class="main-content">
+      <form method="post" id="dataForm" class="new-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" class="form-control" value="{{ item.name }}" required>
+          <ul id="autocompleteSuggestions" class="autocomplete-suggestions"></ul>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea id="description" name="description" class="form-control">{{ item.description }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="owned">Lo tengo</label>
+            <input type="checkbox" id="owned" name="owned" class="form-control" {% if item.owned %}checked{% endif %}>
+        </div>
+        
+        <div class="form-group">
+            <label for="brand">Marca</label>
+            <input type="text" id="brand" name="brand" class="form-control" value="{{item.brand}}">
+        </div>
+
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <select name="category" id="id_category" class="form-control" required onchange="updateSubcategories()">
+            <option value="">Selecciona una categoría</option>
+            <option value="Rostro" {% if item.category == "Rostro" %}selected{% endif %}>Rostro</option>
+            <option value="Ojos" {% if item.category == "Ojos" %}selected{% endif %}>Ojos</option>
+            <option value="Labios" {% if item.category == "Labios" %}selected{% endif %}>Labios</option>
+            <option value="Manos" {% if item.category == "Manos" %}selected{% endif %}>Manos</option>
+            <option value="Paletas" {% if item.category == "Paletas" %}selected{% endif %}>Paletas</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="subcategory">Subcategoría</label>
+          <select name="subcategory" required id="id_subcategory">
+            {% for subcategory in subcategories %}
+            <option value="{{ subcategory.value }}" {% if subcategory.value == item.subcategory %}selected{% endif %}>{{ subcategory.label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Precio</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" class="form-control" value="{{item.price}}">
+        </div>
+
+        <div class="form-group">
+            <label for="image">Imagen</label>
+            <input type="file" id="image" name="image" class="form-control" accept="image/*" value="{{item.image}}">
+        </div>
+        
+        <!-- Botón de Envío -->
+        <button type="submit">Guardar cambios</button>
+      </form>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+  </footer>
+</body>
+</html>

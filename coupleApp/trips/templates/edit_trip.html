@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Editar sitio{% endblock %}</title>
+    <title>{% block title %}Editar viaje{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'css/general.css' %}">
     <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
 
-    <script src="{% static 'js/add_edit_trip.js' %}" defer></script>
+    <script src="{% static 'js/trips/add_edit_trip.js' %}" defer></script>
 </head>
 <body>
   <header class="header">
@@ -20,16 +20,17 @@
           </a>
       </div>
       <div class="header-content">
-          <h1>Editar sitio: {{ trip.destiny }}</h1>
+          <h1>Editar viaje a: {{ trip.destiny }}</h1>
       </div>
   </header>
-
-  <div class="main-container">
+  <div class="header-bar">
     <div class="back-button-container">
-      <a href="{% url 'trips:trips_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+      <a href="{% url 'trips:trip_details_page' trip.pk %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
     </div>
+  </div>
+  <div class="main-container">
     <main class="main-content">
-      <form method="post" id="dataForm" class="new-trip-form">
+      <form method="post" id="dataForm" class="new-form">
         {% csrf_token %}
             <!-- Campo de Nombre -->
         <div class="form-group">

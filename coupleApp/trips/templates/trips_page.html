@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Sitios Visitados{% endblock %}</title>
+    <title>{% block title %}Viajes{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'css/general.css' %}">
-    <link rel="stylesheet" href="{% static 'css/trips_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/trips/trips_page.css' %}">
     <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -17,7 +17,7 @@
     <script>
         const geojsonUrl = "{% url 'trips:trips_geojson' %}";
     </script>
-    <script src="{% static 'js/trips_page.js' %}" defer></script>
+    <script src="{% static 'js/trips/trips_page.js' %}" defer></script>
 </head>
 <body>
     <header class="header">
@@ -27,22 +27,24 @@
             </a>
         </div>
         <div class="header-content">
-            <h1>Sitios donde hemos estado</h1>
-            <p>Aquí puedes ver todos los lugares en los que hemos estado y añadir los nuevos a donde vayamos.</p>
+            <h1>Viajes</h1>
+            <p>Aquí puedes ver todos los viajes que hemos hecho y añadir los nuevos que hagamos.</p>
         </div>
     </header>
-
-    <div class="main-container">
+    <div class="header-bar">
         <div class="back-button-container">
             <a href="{% url 'core:home_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
         </div>
-        <main class="main-content">
-            <div id="add-trip-container" class="add-trip-container">
+        <div class="add-buttons-container">
+            <div id="add-button-container" class="add-button-container">
                 <a href="{% url 'trips:new_trip' %}" class="btn-add">
-                    <button type="button" onclick="ocultar()">Añadir Nuevo Sitio</button>
+                    <button type="button">Añadir nuevo viaje</button>
                 </a>
             </div>
-            
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">       
             <div class="trips-container-wrapper">
                 <button id="left" class="scroll-btn left">&#8592;</button>
                 <div class="trips-container">

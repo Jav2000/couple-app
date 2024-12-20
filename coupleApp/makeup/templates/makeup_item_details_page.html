@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    {% load custom_filters %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Detalles del producto{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Detalles del producto</h1>
+        </div>
+    </header>
+    <div class="header-bar">
+        <div class="back-button-container">
+            <a href="{% if redirect_url %}
+                        {{ redirect_url }}
+                     {% else %}
+                        {% url 'makeup:all_items_page' %}
+                     {% endif %}" 
+            class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">
+            <div class="details">
+                <header class="details-header">
+                    <div class="action-buttons">
+                        <a href="{% url 'makeup:edit_item' item.pk %}" class="btn-edit"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="{% url 'makeup:delete_item' item.pk %}" method="post" class="btn-delete-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                    <h2>{{ item.name }}</h2>
+                </header>
+        
+                <section class="description">
+                    <h3>Descripción</h3>
+                    <p>{{ item.description }}</p>
+                </section>
+                
+                <section class="item-info">
+                    <h3>Información adicional</h3>
+                    <ul>
+                        <li><strong>Marca:</strong> {{ item.brand|default:"No disponible" }}</li>
+                        <li><strong>Categoría:</strong> {{ item.category|default:"No disponible" }}</li>
+                        <li><strong>Sub-categoría:</strong> {{ item.subcategory|subcategory_label|default:"No disponible" }}</li>
+                        <li><strong>Precio:</strong> {% if item.price %}{{ item.price }} €{% else %}No disponible{% endif %}</li>
+                        <li><strong>Lo tengo:</strong> 
+                            {% if item.owned %}
+                                <i class="fas fa-check-circle" style="color: green;"></i> Sí
+                            {% else %}
+                                <i class="fas fa-times-circle" style="color: red;"></i> No
+                            {% endif %}
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="item-image">
+                    <h3>Imagen del Producto</h3>
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="Imagen de {{ item.name }}" class="item-image-preview">
+                    {% else %}
+                        <p>No se ha cargado imagen.</p>
+                    {% endif %}
+                </section>
+
+                <section class="updated-at">
+                    <h3>Última actualización</h3>
+                    <p>{{ item.updated_at }}</p>
+                </section>
+
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+    </footer>
+</body>
+</html>

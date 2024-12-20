@@ -17,14 +17,14 @@ body {
 }
 
 .main-container {
-    flex: 1; /* Hace que el main ocupe todo el espacio restante */
-    display: flex;  /* Flexbox para centrar contenido */
-    flex-direction: column;  /* Alinear en columna */
-    justify-content: center;  /* Centrar verticalmente */
-    align-items: center;  /* Centrar horizontalmente */
-    background-color: rgb(245, 190, 207);  /* Fondo claro */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(245, 190, 207, 0.55);
     min-height: calc(100vh - 160px);
-    overflow: hidden; /* Evita desbordamientos */
+    overflow: hidden;
 }
 
 .main-content{
@@ -34,15 +34,15 @@ body {
 }
 
 .header {
-    background-color: rgb(197, 115, 139); /* Rosa fuerte */
+    background-color: rgb(197, 115, 139);
     color: rgb(164, 0, 55);
     text-align: center;
     padding: 1em 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    height: 150px; /* Puedes ajustar la altura según lo desees */
+    justify-content: center;
+    align-items: center;
+    height: 150px;
 }
 
 .header-content {
@@ -50,21 +50,21 @@ body {
 }
 
 .header-content h1 {
-    font-size: 2rem; /* Tamaño del título */
+    font-size: 2rem;
 }
 
 .header-content p {
-    font-size: 1.2rem; /* Tamaño de la descripción */
+    font-size: 1.2rem;
 }
 
 .logo-container {
-    position: absolute; /* Lo coloca en la esquina */
-    top: -25px; /* Ajusta la distancia desde el top */
-    left: 20px; /* Ajusta la distancia desde la izquierda */
+    position: absolute;
+    top: 0px;
+    left: 20px;
 }
     
 .logo {
-    width: 200px; /* Ajusta el tamaño del logo */
+    width: 150px;
     height: auto;
 }
 
@@ -76,8 +76,8 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    flex-shrink: 0; /* Evita que el footer se encoja */
-    text-align: center; /* Centra el texto del footer horizontalmente */
+    flex-shrink: 0;
+    text-align: center;
 }
 
 .footer p {
@@ -85,54 +85,85 @@ body {
     margin: 0;
 }
 
-/* Estilo del formulario */
-.new-trip-form {
-    background-color: #ffffff;
+.new-form {
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Usa el ancho completo del contenedor */
-    max-width: 600px; /* Límite máximo para pantallas grandes */
-    margin: 0 auto; /* Centrado */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo de los campos del formulario */
-.new-trip-form input,
-.new-trip-form textarea,
-.new-trip-form select {
+.new-form .form-group {
+    margin-bottom: 15px;
+}
+
+.new-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.new-form input,
+.new-form textarea,
+.new-form select {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 14px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.new-form input:focus,
+.new-form textarea:focus,
+.new-form select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
-    transition: border-color 0.3s ease-in-out;
 }
 
-.new-trip-form input:focus,
-.new-trip-form textarea:focus,
-.new-trip-form select:focus {
-    border-color: #c71585; /* Color en foco */
-}
-
-/* Botón de guardar */
-.new-trip-form button[type="submit"] {
-    background-color: #c71585; /* Color principal */
-    color: #ffffff; /* Texto blanco */
+/* Botón principal con colores rosados */
+.new-form button {
+    display: block;
+    margin: 20px auto 0;
     padding: 10px 15px;
+    background-color: #C71585;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.new-trip-form button[type="submit"]:hover {
-    background-color: #a01068; /* Color más oscuro al pasar el mouse */
-    transform: translateY(-3px); /* Efecto de elevación */
+/* Efecto hover para el botón */
+.new-form button:hover {
+    background-color: #ff85c1; /* Rosa más claro */
+    transform: scale(1.05); /* Pequeño zoom al pasar el ratón */
+}
+
+/* Botón deshabilitado */
+.new-form button:disabled {
+    background-color: #f8bbd0; /* Rosa pálido */
+    cursor: not-allowed;
+}
+
+/* Sutil sombreado para resaltar el botón */
+.new-form button {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder Styling */
+.new-form input::placeholder,
+.new-form textarea::placeholder {
+    color: #aaa;
+    font-style: italic;
 }
 
 /* Pop-up */
@@ -285,32 +316,56 @@ input[name="name"] {
     z-index: 1;
 }
 
-.back-button-container {
-    margin-top: 20px; /* Espacio por debajo del header */
-    margin-left: 20px; /* Espacio a la izquierda */
-    z-index: 10;
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0a4b4; /* Fondo rosado suave */
+    padding: 10px 20px;
+    border-bottom: 2px solid #e0a4b4; /* Línea de separación */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-.btn-back {
+.back-button-container a.btn-back {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #d9457e; /* Color rosado más intenso */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-button-container a.btn-back:hover {
+    color: #a83261; /* Color más oscuro en hover */
+}
+
+.add-buttons-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px; /* Tamaño del círculo */
-    height: 40px; /* Tamaño del círculo */
-    background-color: rgb(197, 115, 139);
+    gap: 15px; /* Espaciado entre los botones */
+    flex: 1; /* Ocupa el espacio disponible */
+}
+
+.add-button-container a.btn-add button {
+    background-color: #d9457e; /* Color del botón */
     color: #fff;
-    text-decoration: none;
-    font-size: 18px; /* Tamaño de la flecha */
-    border-radius: 50%; /* Hace el fondo circular */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-back:hover {
-    background-color: #0056b3;
-    transform: scale(1.1); /* Efecto al pasar el ratón */
+.add-button-container a.btn-add button:hover {
+    background-color: #a83261; /* Color más oscuro al hover */
+    transform: scale(1.05); /* Efecto de zoom */
 }
 
+.add-button-container a.btn-add button:active {
+    transform: scale(0.95); /* Efecto de clic */
+}
 
 .modal-header {
     position: absolute;
@@ -426,6 +481,263 @@ input[name="name"] {
     object-fit: contain;
 }
 
+.details {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Botones de acción */
+.action-buttons {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre botones */
+    margin-bottom: 15px;
+}
+
+.action-buttons a.btn-edit,
+.action-buttons form .btn-delete {
+    display: inline-block; /* Ambos botones serán tratados como bloques en línea */
+    padding: 12px 20px; /* Espaciado uniforme */
+    font-size: 16px; /* Mismo tamaño de fuente */
+    font-family: inherit; /* Usar la misma fuente del entorno */
+    color: white;
+    background-color: #4CAF50; /* Verde para editar */
+    text-align: center; /* Centrado del texto */
+    text-decoration: none; /* Quitar subrayado del enlace */
+    border: none; /* Quitar borde en ambos */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+    min-width: 100px; /* Asegura un ancho mínimo */
+    height: 50px; /* Altura fija */
+    line-height: 1; /* Controla el alto de la línea del texto */
+}
+
+.action-buttons a.btn-edit,
+.action-buttons form .btn-delete {
+    width: auto; /* Asegura que ambos elementos no tomen un ancho inesperado */
+    height: auto; /* Permite ajustar automáticamente el alto */
+    line-height: 1.5; /* Uniforma la alineación del texto */
+}
+
+/* Especificidad para diferenciar colores */
+.action-buttons form .btn-delete {
+    background-color: #f44336; /* Rojo para eliminar */
+}
+
+.action-buttons a.btn-edit:hover,
+.action-buttons form .btn-delete:hover {
+    opacity: 0.9; /* Ligera opacidad al pasar el mouse */
+}
+
+/* Mantener ambos botones alineados verticalmente */
+.action-buttons a.btn-edit,
+.action-buttons form .btn-delete {
+    line-height: 1.5; /* Asegura que ambos textos se alineen igual */
+}
+
+.details-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.details-header h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.details-header .date {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Estilo general para las secciones de detalles */
+.details section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Estilo de párrafos e información textual */
+.details section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 10px;
+}
+
+/* Estilo para listas */
+.details section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.details section ul li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.details section ul li strong {
+    color: #333;
+}
+
+/* Estilo para íconos, si se incluyen */
+.details section li i {
+    margin-left: 5px;
+}
+
+.details section li i.fas.fa-check-circle {
+    color: green;
+}
+
+.details section li i.fas.fa-times-circle {
+    color: red;
+}
+
+/* Estilo para imágenes */
+.details section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.details section img + p {
+    color: #888;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.item-image-preview {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.details section p.updated-at {
+    font-style: italic;
+    color: #777;
+}
+
+.category-item-list{
+    transform: translateY(-5%);
+}
+
+/* Título de categoría */
+.category-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3a3a3a;
+    margin: 30px auto;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #d9457e;
+    max-width: 900px;
+}
+
+/* Lista de productos */
+.product-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Elementos de la lista */
+.product-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.product-item:hover {
+    transform: translateY(-5px); /* Levantamos el elemento cuando pasa el mouse */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Más sombra para resaltar el hover */
+}
+
+/* Enlace del producto */
+.product-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: inherit;
+}
+
+.product-link:hover .product-name {
+    color: #d9457e;
+}
+
+/* Información del producto */
+.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.product-brand {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #777;
+    margin: 5px 0 0;
+}
+
+/* Flecha de dirección */
+.product-arrow {
+    font-size: 2rem;
+    color: #d9457e;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+}
+
+/* Hover en la flecha */
+.product-item:hover .product-arrow {
+    transform: translateX(5px);
+}
+
+/* Texto cuando no hay ítems */
+.no-items {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -463,23 +775,23 @@ input[name="name"] {
         padding: 5px; /* Adjust padding */
     }
 
-    .new-trip-form {
+    .new-form {
         padding: 15px; /* Reduce el padding para móviles */
         width: 80%; /* Ancho reducido para pantallas pequeñas */
     }
 
-    .new-trip-form input,
-    .new-trip-form textarea,
-    .new-trip-form select {
+    .new-form input,
+    .new-form textarea,
+    .new-form select {
         font-size: 14px; /* Ajusta el tamaño del texto */
     }
 
-    .new-trip-form button[type="submit"] {
+    .new-form button[type="submit"] {
         font-size: 14px; /* Tamaño del botón más pequeño */
         padding: 8px 12px; /* Menor padding */
     }
 
-    .new-trip-form textarea[name="description"] {
+    .new-form textarea[name="description"] {
         width: 90%; /* Ajusta el ancho al 80% del formulario */
         max-width: 500px; /* Establece un ancho máximo */
         height: 100px; /* Reduce la altura */
@@ -513,5 +825,24 @@ input[name="name"] {
 
     .nav-arrow {
         display: none;
+    }
+
+    .product-item {
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 10px;
+    }
+
+    .product-arrow {
+        font-size: 1.5rem;
+    }
+
+    .product-name {
+        font-size: 1.2rem;
+    }
+
+    .product-brand {
+        font-size: 0.9rem;
     }
 }

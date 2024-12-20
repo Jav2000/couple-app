@@ -1,0 +1,258 @@
+.responsive-table-container {
+    margin: 20px auto; /* Margen superior e inferior */
+    max-width: 90%; /* Ancho máximo de la tabla */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    overflow-y: auto; /* Permite desplazamiento vertical */
+    max-height: 50vh; /* Limita la altura máxima de la tabla al 70% de la ventana */
+    border: 1px solid #d4d4d4; /* Borde opcional para enmarcar la tabla */
+    padding: 10px; /* Espaciado interior */
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para un diseño más atractivo */
+    border-radius: 8px; /* Bordes redondeados */
+    transform: translateY(-20%);
+}
+
+table {
+    width: 100%; /* Hace que la tabla ocupe todo el ancho del contenedor */
+    border-collapse: collapse; /* Elimina el espacio entre bordes de las celdas */
+    font-size: 1rem; /* Tamaño de fuente */
+    text-align: left; /* Alinea texto a la izquierda */
+}
+
+thead {
+    position: sticky; /* Fija la cabecera en su posición */
+    top: -12px; /* La cabecera se queda pegada a la parte superior del contenedor */
+    background-color: #d9457e;
+    color: #ffffff;
+}
+
+thead th {
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #d4d4d4;
+}
+
+tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody td {
+    padding: 12px 15px;
+    color: #555555;
+}
+
+tbody td:last-child {
+    text-transform: capitalize;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #888888;
+}
+
+.desktop-only {
+    display: table-cell;
+}
+
+tfoot {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777777;
+}
+
+.empty-row td {
+    text-align: center;
+    color: #888888;
+    font-style: italic;
+}
+
+.makeup-desktop-menu {
+    background-color: rgba(224, 164, 180, 0.71);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.makeup-desktop-menu .categories {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+    gap: 20px;
+}
+
+.makeup-desktop-menu .category {
+    position: relative;
+}
+
+.makeup-desktop-menu .category > a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.67);
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+}
+
+.makeup-desktop-menu .category > a:hover {
+    color: #d63384;
+}
+
+.makeup-desktop-menu .subcategories {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(224, 164, 180, 1);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    list-style: none;
+    padding: 10px;
+    min-width: 200px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.makeup-desktop-menu .category:hover .subcategories {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.makeup-desktop-menu .subcategories li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 10px;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.makeup-desktop-menu .subcategories li a:hover {
+    background-color: rgb(224, 149, 169);
+    border-radius: 4px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.makeup-mobile-menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .responsive-table-container {
+        overflow-x: auto;
+        overflow-y: auto;
+        margin: 20px auto;
+        max-width: 90%;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+    
+    thead {
+        font-size: 1rem;
+    }
+
+    .makeup-desktop-menu{
+        display: none;
+    }
+
+    .makeup-mobile-menu {
+        display: block;
+        background-color: rgba(224, 164, 180, 0.71);
+        padding: 10px;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .makeup-mobile-menu .menu-toggle {
+        background-color: #d9457e;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+    
+    .makeup-mobile-menu .menu-toggle:hover {
+        background-color: #d63384;
+    }
+    
+    .makeup-mobile-menu .categories {
+        display: none;
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+        background-color: rgba(224, 164, 180, 1);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .makeup-mobile-menu .category {
+        padding: 10px;
+        border-bottom: 1px solid #ffffff;
+    }
+    
+    .makeup-mobile-menu .category span {
+        display: block;
+        font-weight: bold;
+        font-size: 16px;
+        color: #ffffff;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    .makeup-mobile-menu .category span:hover {
+        color: #d63384;
+    }
+    
+    .makeup-mobile-menu .subcategories {
+        display: none;
+        list-style: none;
+        margin: 10px 0 0 15px;
+        padding: 0;
+    }
+    
+    .makeup-mobile-menu .subcategories li a {
+        text-decoration: none;
+        color: #ffffff;
+        display: block;
+        padding: 8px 10px;
+        font-size: 14px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease-in-out;
+    }
+    
+    .makeup-mobile-menu .subcategories li a:hover {
+        background-color: rgb(224, 149, 169);
+    }
+}

@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Añadir viaje{% endblock %}</title>
+    <title>{% block title %}Añadir nuevo producto comprado{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'css/general.css' %}">
     <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
 
-    <script src="{% static 'js/trips/add_edit_trip.js' %}" defer></script>
+    <script src="{% static 'js/makeup/new_makeup_item.js' %}" defer></script>
 </head>
 <body>
   <header class="header">
@@ -20,53 +20,61 @@
           </a>
       </div>
       <div class="header-content">
-          <h1>Añadir un nuevo viaje</h1>
+          <h1>Añadir un nuevo producto comprado de maquillaje</h1>
       </div>
   </header>
   <div class="header-bar">
     <div class="back-button-container">
-      <a href="{% url 'trips:trips_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+      <a href="{% url 'makeup:makeup_items_page' %}" class="btn-back" aria-label="Volver a la lista de productos">&#8592;</a>
     </div>
   </div>
   <div class="main-container">
     <main class="main-content">
       <form method="post" id="dataForm" class="new-form">
         {% csrf_token %}
-            <!-- Campo de Nombre -->
         <div class="form-group">
-          <label for="destiny">Destino</label>
-          <input type="text" id="destiny" name="destiny" class="form-control" placeholder="Escribe el nombre" required>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Escribe el nombre" required>
           <ul id="autocompleteSuggestions" class="autocomplete-suggestions"></ul>
         </div>
         
-        <!-- Campo de Descripción -->
         <div class="form-group">
             <label for="description">Descripción</label>
             <textarea id="description" name="description" class="form-control" placeholder="Escribe una descripción"></textarea>
         </div>
         
-        <!-- Campo de Fecha de Inicio -->
         <div class="form-group">
-            <label for="start_date">Fecha de inicio</label>
-            <input type="date" id="start_date" name="start_date" class="form-control" required>
+            <label for="brand">Marca</label>
+            <input type="text" id="brand" name="brand" class="form-control">
         </div>
-        
-        <!-- Campo de Fecha de Fin -->
+
         <div class="form-group">
-            <label for="end_date">Fecha de fin</label>
-            <input type="date" id="end_date" name="end_date" class="form-control" required>
+          <label for="category">Categoría</label>
+          <select name="category" onchange="updateSubcategories()" required id="id_category">
+            <option value="">Seleccione una categoría</option>
+            <option value="Rostro">Rostro</option>
+            <option value="Ojos">Ojos</option>
+            <option value="Labios">Labios</option>
+            <option value="Manos">Manos</option>
+            <option value="Paletas">Paletas</option>
+          </select>
         </div>
-        
-        <!-- Campo de Latitud -->
+
         <div class="form-group">
-            <label for="latitude">Latitud</label>
-            <input type="text" id="latitude" name="latitude" class="form-control" readonly>
+          <label for="subcategory">Subcategoría</label>
+          <select name="subcategory" required id="id_subcategory">
+              <option value="">Seleccione una subcategoría</option>
+          </select>
         </div>
-        
-        <!-- Campo de Longitud -->
+
         <div class="form-group">
-            <label for="longitude">Longitud</label>
-            <input type="text" id="longitude" name="longitude" class="form-control" readonly>
+            <label for="price">Precio</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="image">Imagen</label>
+            <input type="file" id="image" name="image" class="form-control" accept="image/*">
         </div>
         
         <!-- Botón de Envío -->
