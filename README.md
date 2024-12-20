@@ -66,7 +66,6 @@ Couple-App es una aplicación diseñada para capturar y gestionar los recuerdos 
 
 - Implementación de filtros y categorías para organizar sitios.
 - Función de compartir fotos y sitios a través de enlaces.
-- Versión móvil para facilitar el acceso desde cualquier dispositivo.
 
 ---
 
