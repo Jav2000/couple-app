@@ -1,7 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-from django.core.exceptions import ValidationError
-from django.conf import settings
 
 from .models import Item
 from .forms import ItemForm

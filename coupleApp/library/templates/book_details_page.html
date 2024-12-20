@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Sitios Visitados{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery/photo_gallery.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/gallery/photo_gallery.js' %}" defer></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Sitios donde hemos estado</h1>
+            <p>Aquí puedes ver todos los lugares en los que hemos estado y añadir los nuevos a donde vayamos.</p>
+        </div>
+    </header>
+    <div class="header-bar">
+        <div class="back-button-container">
+            <a href="{% url 'library:library_page' %}" class="btn-back">&#8592;</a>
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">
+            <div class="details">
+                <header class="details-header">
+                    <div class="action-buttons">
+                        <a href="{% url 'library:edit_book' book.pk %}" class="btn-edit"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="{% url 'library:delete_book' book.pk %}" method="post" class="btn-delete-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                    <h2>{{ book.title }}</h2>
+                </header>
+        
+                <section class="description">
+                    <h3>Autor</h3>
+                    <p>{{ book.author }}</p>
+                </section>
+                
+                <section class="item-info">
+                    <h3>Información adicional</h3>
+                    <ul>
+                        <li><strong>Descripción:</strong> {{ book.description|default:"No disponible" }}</li>
+                        <li><strong>Género:</strong> {{ book.genre|default:"No disponible" }}</li>
+                        <li><strong>ISBN:</strong> {{ book.isbn|default:"No disponible" }}</li>
+                        <li><strong>Fecha de publicación:</strong> {{ book.publish_date|default:"No disponible" }}</li>
+                        <li><strong>Páginas:</strong> {{ book.pages|default:"No disponible" }}</li>
+                    </ul>
+                </section>
+
+                <section class="item-image">
+                    <h3>Imagen del libro</h3>
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="Imagen de {{ book.name }}" class="item-image-preview">
+                    {% else %}
+                        <p>No se ha cargado imagen.</p>
+                    {% endif %}
+                </section>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+    </footer>
+</body>
+</html>

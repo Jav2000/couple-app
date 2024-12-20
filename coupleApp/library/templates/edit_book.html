@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Editar viaje{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/trips/add_edit_trip.js' %}" defer></script>
+</head>
+<body>
+  <header class="header">
+      <div class="logo-container">
+          <a href="{% url 'core:home_page' %}">
+            <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+          </a>
+      </div>
+      <div class="header-content">
+          <h1>Editar viaje a: {{ trip.destiny }}</h1>
+      </div>
+  </header>
+  <div class="header-bar">
+    <div class="back-button-container">
+      <a href="{% url 'library:book_details_page' book.pk %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+    </div>
+  </div>
+  <div class="main-container">
+    <main class="main-content">
+      <form method="post" id="dataForm" class="new-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="title">Título</label>
+          <input type="text" id="title" name="title" class="form-control" value="{{ book.title }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="author">Autor</label>
+            <textarea id="description" name="author" class="form-control">{{ book.author }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" class="form-control" value="{{ book.isbn }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cover_image">Imagen</label>
+            <input type="file" id="cover_image" name="cover_image" class="form-control" accept="image/*" value="{{item.cover_image}}">
+        </div>
+        
+        <!-- Botón de Envío -->
+        <button type="submit">Guardar cambios</button>
+      </form>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+  </footer>
+</body>
+</html>

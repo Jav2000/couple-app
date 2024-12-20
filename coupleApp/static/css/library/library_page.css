@@ -1,0 +1,31 @@
+.book-list {
+    margin: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.book-list li:last-child {
+    border-bottom: none;
+}
+
+.book-list a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.book-list a:hover {
+    text-decoration: underline;
+}

@@ -23,7 +23,7 @@ SECRET_KEY = config('SECRET_KEY')
 GOOGLE_MAPS_API_KEY = config('GOOGLE_MAPS_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True 
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.10']
 
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'core',
     'trips',
     'gallery',
-    'makeup'
+    'makeup',
+    'library'
 ]
 
 MIDDLEWARE = [

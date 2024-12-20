@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Sitios Visitados{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery/photo_gallery.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/gallery/photo_gallery.js' %}" defer></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Sitios donde hemos estado</h1>
+            <p>Aquí puedes ver todos los lugares en los que hemos estado y añadir los nuevos a donde vayamos.</p>
+        </div>
+    </header>
+    <div class="header-bar">
+        <div class="back-button-container">
+            <a href="{% url 'core:home_page' %}" class="btn-back" aria-label="Volver a la lista de sitios">&#8592;</a>
+        </div>
+        <div class="add-buttons-container">
+            <div id="add-button-container" class="add-button-container">
+                <a href="{% url 'library:new_book' %}" class="btn-add">
+                    <button type="button">Nuevo libro</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">
+            <div class="books-list">
+                <h1 class="category-title">Todos los Libros</h1>
+                {% if books %}
+                    <ul class="product-list">
+                        {% for book in books %}
+                            <li class="product-item">
+                                <a href="{% url 'library:book_details_page' book.pk %}" class="product-link">
+                                    <div class="product-info">
+                                        <h2 class="product-name">{{ book.title }}</h2>
+                                        <p class="product-brand">{{ book.author }}</p>
+                                    </div>
+                                    <span class="product-arrow">→</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="no-items">No hay libros disponibles.</p>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+    </footer>
+</body>
+</html>

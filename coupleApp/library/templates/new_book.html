@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Añadir nuevo libro{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/library/new_book.js' %}" defer></script>
+</head>
+<body>
+  <header class="header">
+      <div class="logo-container">
+          <a href="{% url 'core:home_page' %}">
+            <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+          </a>
+      </div>
+      <div class="header-content">
+          <h1>Añadir un nuevo libro</h1>
+      </div>
+  </header>
+  <div class="header-bar">
+    <div class="back-button-container">
+      <a href="{% url 'library:library_page' %}" class="btn-back" aria-label="Volver a la lista de productos">&#8592;</a>
+    </div>
+  </div>
+  <div class="main-container">
+    <main class="main-content">
+      <form method="post" id="dataForm" class="new-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="title">Título</label>
+          <input type="text" id="title" name="title" class="form-control" placeholder="Escribe el título" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="author">Autor</label>
+            <textarea id="author" name="author" class="form-control" placeholder="Escribe el autor"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="pages">Páginas</label>
+            <input type="text" id="pages" name="pages" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="cover_image">Imagen</label>
+            <input type="file" id="cover_image" name="cover_image" class="form-control" accept="image/*">
+        </div>
+        
+        <!-- Botón de Envío -->
+        <button type="submit" onclick="handleSubmit(event)">Guardar</button>
+      </form>
+    </main>
+  </div>
+
+  <div class="pop-up" id="popup">
+    <p id="popupMessage"></p>
+    <button onclick="closePopup()">Cerrar</button>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+  </footer>
+</body>
+  
