@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    {% load custom_filters %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Detalles del producto{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Detalles del producto</h1>
+        </div>
+    </header>
+    <div class="header-bar">
+        <div class="back-button-container">
+            <a href="{% if redirect_url %}
+                        {{ redirect_url }}
+                     {% else %}
+                        {% url 'skincare:skincare_products_page' %}
+                     {% endif %}" 
+            class="btn-back" aria-label="Volver a la lista de productos">&#8592;</a>
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">
+            <div class="details">
+                <header class="details-header">
+                    <div class="action-buttons">
+                        <a href="{% url 'skincare:edit_skincare_product' skincare_product.pk %}" class="btn-edit"><i class="fas fa-pencil-alt"></i></a>
+                        <form action="{% url 'skincare:delete_skincare_product' skincare_product.pk %}" method="post" class="btn-delete-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                    <h2>{{ skincare_product.name }}</h2>
+                </header>
+        
+                <section class="description">
+                    <h3>Descripción</h3>
+                    <p>{{ skincare_product.description }}</p>
+                </section>
+                
+                <section class="item-info">
+                    <h3>Información adicional</h3>
+                    <ul>
+                        <li><strong>Marca:</strong> {{ skincare_product.brand|default:"No disponible" }}</li>
+                        <li><strong>Categoría:</strong> {{ skincare_product.category|default:"No disponible" }}</li>
+                        <li><strong>Precio:</strong> {% if skincare_product.price %}{{ skincare_product.price }} €{% else %}No disponible{% endif %}</li>
+                        <li><strong>Lo tengo:</strong> 
+                            {% if skincare_product.owned %}
+                                <i class="fas fa-check-circle" style="color: green;"></i> Sí
+                            {% else %}
+                                <i class="fas fa-times-circle" style="color: red;"></i> No
+                            {% endif %}
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="item-image">
+                    <h3>Imagen del Producto</h3>
+                    {% if skincare_product.image %}
+                        <img src="{{ skincare_product.image.url }}" alt="Imagen de {{ skincare_product.name }}" class="item-image-preview">
+                    {% else %}
+                        <p>No se ha cargado imagen.</p>
+                    {% endif %}
+                </section>
+
+                <section class="updated-at">
+                    <h3>Última actualización</h3>
+                    <p>{{ skincare_product.updated_at }}</p>
+                </section>
+
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+    </footer>
+</body>
+</html>

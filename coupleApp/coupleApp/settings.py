@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'trips',
     'gallery',
     'makeup',
-    'library'
+    'library',
+    'skincare'
 ]
 
 MIDDLEWARE = [

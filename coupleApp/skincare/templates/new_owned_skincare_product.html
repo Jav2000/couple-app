@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Añadir nuevo producto de skincare comprado{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <script src="{% static 'js/skincare/new_skincare_product.js' %}" defer></script>
+</head>
+<body>
+  <header class="header">
+      <div class="logo-container">
+          <a href="{% url 'core:home_page' %}">
+            <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+          </a>
+      </div>
+      <div class="header-content">
+          <h1>Añadir un nuevo producto comprado de skincare</h1>
+      </div>
+  </header>
+  <div class="header-bar">
+    <div class="back-button-container">
+      <a href="{% url 'skincare:skincare_products_page' %}" class="btn-back" aria-label="Volver a la lista de productos">&#8592;</a>
+    </div>
+  </div>
+  <div class="main-container">
+    <main class="main-content">
+      <form method="post" id="dataForm" class="new-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Escribe el nombre" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea id="description" name="description" class="form-control" placeholder="Escribe una descripción"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="brand">Marca</label>
+            <input type="text" id="brand" name="brand" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <select name="category" required id="id_category">
+            <option value="">Seleccione una categoría</option>
+            <option value="Rostro">Rostro</option>
+            <option value="Ojos">Ojos</option>
+            <option value="Labios">Labios</option>
+            <option value="Manos">Manos</option>
+            <option value="Paletas">Paletas</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Precio</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="image">Imagen</label>
+            <input type="file" id="image" name="image" class="form-control" accept="image/*">
+        </div>
+        
+        <!-- Botón de Envío -->
+        <button type="submit" onclick="handleSubmit(event)">Guardar</button>
+      </form>
+    </main>
+  </div>
+
+  <div class="pop-up" id="popup">
+    <p id="popupMessage"></p>
+    <button onclick="closePopup()">Cerrar</button>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+  </footer>
+</body>
+  
