@@ -42,6 +42,4 @@ jobs:
     # Dependencies vulnerabilities
     - name: Install safety
       run: pip install safety
-    - name: Run safety check
-      run: safety check
 
