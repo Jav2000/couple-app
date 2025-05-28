@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    {% load custom_filters %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Productos de skincare{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/makeup/makeup_items_page.css' %}">
+    <link rel="icon" href="{% static 'images/Lucier.ico' %}" type="image/x-icon">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <script src="{% static 'js/skincare/skincare_products_page.js' %}" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="{% url 'core:home_page' %}">
+                <img src="{% static 'images/Lucier.png' %}" alt="Logo Lucier" class="logo">
+            </a>
+        </div>
+        <div class="header-content">
+            <h1>Lista de skincare</h1>
+            <p>Aquí puedes ver todos los productos de skincare que tienes o quieres.</p>
+        </div>
+    </header>
+    <nav class="makeup-desktop-menu">
+        <ul class="categories">
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Limpiadores' %}">Limpiadores</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Tonicos' %}">Tónicos</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Serums' %}">Serums</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Crema_hidratante' %}">Crema hidratante</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Contorno_de_ojos' %}">Contorno de ojos</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Exfoliantes' %}">Exfoliantes</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Tratamiento_de_labios' %}">Tratamiento de labios</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Desmaquillantes' %}">Desmaquillantes</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Mascarillas' %}">Mascarillas</a>
+            </li>
+        </ul>
+    </nav>
+    <nav class="makeup-mobile-menu">
+        <button class="menu-toggle">☰ Categorías</button>
+        <ul class="categories">
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Limpiadores' %}">Limpiadores</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Tonicos' %}">Tónicos</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Serums' %}">Serums</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Crema_hidratante' %}">Crema hidratante</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Contorno_de_ojos' %}">Contorno de ojos</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Exfoliantes' %}">Exfoliantes</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Tratamiento_de_labios' %}">Tratamiento de labios</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Desmaquillantes' %}">Desmaquillantes</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Limpiadores' %}">Limpiadores</a>
+            </li>
+            <li class="category">
+                <a href="{% url 'skincare:category_products' 'Mascarillas' %}">Mascarillas</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="header-bar">
+        <div class="back-button-container">
+            <a href="{% url 'skincare:skincare_products_page' %}" class="btn-back">&#8592;</a>
+        </div>
+        <div class="add-buttons-container">
+            <div id="add-button-container" class="add-button-container">
+                <a href="{% url 'skincare:new_owned_skincare_product' %}" class="btn-add">
+                    <button type="button">Lo tengo</button>
+                </a>
+            </div>
+            <div id="add-button-container" class="add-button-container">
+                <a href="{% url 'skincare:new_wanted_skincare_product' %}" class="btn-add">
+                    <button type="button">Lo quiero</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="main-container">
+        <main class="main-content">
+            <div class="category-item-list">
+                <h1 class="category-title">
+                    {{ category_name }}
+                </h1>
+                
+                <ul class="product-list">
+                    {% for skincare_product in skincare_products %}
+                        <li class="product-item">
+                            <a href="{% url 'skincare:skincare_product_details_page' skincare_product.pk %}?redirect_to={% url 'skincare:category_products' category_name %}" class="product-link">
+                                <div class="product-info">
+                                    <h2 class="product-name">{{ skincare_product.name }}</h2>
+                                    <p class="product-brand">{{ skincare_product.brand }}</p>
+                                </div>
+                                <span class="product-arrow">→</span>
+                            </a>
+                        </li>
+                    {% empty %}
+                        <p class="no-items">No hay productos en esta categoría.</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+<footer class="footer">
+    <p>&copy; 2024 Lucier <span style="color: #C71585;">❤</span></p>
+</footer>
+</html>

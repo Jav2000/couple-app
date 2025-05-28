@@ -74,8 +74,8 @@ def edit_item(request, pk):
     return render(request, 'edit_makeup_item.html', {'form': form, 'item': item})
 
 def delete_item(request, pk):
-    trip = get_object_or_404(Item, pk=pk)
+    item = get_object_or_404(Item, pk=pk)
     if request.method == 'POST':
-        trip.delete()
+        item.delete()
         return redirect('makeup:makeup_items_page')
-    return render(request, 'delete_confirmation.html', {'trip': trip})
+    return render(request, 'delete_confirmation.html', {'item': item})
